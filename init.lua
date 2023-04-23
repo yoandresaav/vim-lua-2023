@@ -1,3 +1,5 @@
+-- Yondre Saavedra 2023
+vim.g.mapleader = " "
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -12,8 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
-
 require("lazy").setup("plugins",{
   install = {
     colorscheme = { "solarized", "habamax" }
@@ -25,7 +25,7 @@ require("lazy").setup("plugins",{
     rtp = {
       disabled_plugins = {
         "gzip",
-        -- "netrwPlugin",
+        "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
@@ -51,3 +51,4 @@ require('config.global')
 require('config.keymap')
 require('config.setup')
 require('config.autocmd')
+

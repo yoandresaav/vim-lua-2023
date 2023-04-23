@@ -8,7 +8,7 @@
 
 require('telescope').setup{
   defaults = {
-    file_ignore_patterns = {"node_modules", ".venv", ".env", "static", "yarn.lock"}
+    file_ignore_patterns = {"node_modules", ".venv", ".env", "static", "yarn.lock", ".git"}
   },
   pickers = {
     find_files = {
