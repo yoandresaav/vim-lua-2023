@@ -1,4 +1,5 @@
---- Default globals for the game.
+-- Default globals for the game.
+local g = vim.g
 
 vim.g.go_def_mapping_enabled = 0
 
@@ -31,3 +32,9 @@ vim.g.go_auto_type_info = 1
 -- vim.g.airline#extensions#tabline#enabled = 1
 -- vim.g.airline#extensions#tabline#left_sep = ' '
 -- vim.g.airline_extensions = []
+
+-- Enable Copilot for the gitcommit, markdown and yaml filetypes
+-- vim.g.copilot_filetypes = {'gitcommit', 'markdown', 'yaml'}
+--
+
+g.vimspector_enable_mappings = 'VISUAL_STUDIO'

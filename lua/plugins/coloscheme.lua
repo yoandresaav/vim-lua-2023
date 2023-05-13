@@ -189,5 +189,10 @@ return {
       },
     },
   },
+  -- Nightfox 
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = true,
+  },
 }
 

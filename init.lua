@@ -51,4 +51,5 @@ require('config.global')
 require('config.keymap')
 require('config.setup')
 require('config.autocmd')
+require('config.format')
 

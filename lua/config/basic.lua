@@ -1,9 +1,17 @@
+local opt = vim.opt
+
+
 -- Basic config
 vim.opt.encoding="utf-8"
 vim.opt.fileencoding="utf-8"
 vim.opt.fileencodings="utf-8"
 vim.opt.fileformat="unix"
 vim.opt.fileformats="unix"
+opt.backup=false
+opt.writebackup=false
+opt.updatetime=300
+opt.signcolumn="yes"
+
 
 vim.opt.compatible=false
 vim.opt.showmatch=true
@@ -31,9 +39,11 @@ vim.opt.ttyfast=true
 vim.opt.swapfile=false
 vim.opt.termguicolors=true
 vim.opt.autowrite=true
+vim.opt.modifiable=true
 
 -- config columns 80
 vim.opt.colorcolumn="80"
 
 -- config for nvim-tree
-
+-- vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme solarized")

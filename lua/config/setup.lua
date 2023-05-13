@@ -8,7 +8,7 @@
 
 require('telescope').setup{
   defaults = {
-    file_ignore_patterns = {"node_modules", ".venv", ".env", "static", "yarn.lock", ".git"}
+    file_ignore_patterns = {"node_modules", ".venv", "static", "yarn.lock", ".git"}
   },
   pickers = {
     find_files = {
@@ -18,7 +18,11 @@ require('telescope').setup{
 }
 
 -- Configure lualine
-require('lualine').setup()
+require('lualine').setup{
+  sections = {
+    lualine_c = {{'filename', file_status = true, path = 1}},
+  },
+}
 
 
 require'nvim-treesitter.configs'.setup {
@@ -35,12 +39,33 @@ require'nvim-treesitter.configs'.setup {
       }
    }
   },
-  autotag = {
-      enable = true,
-  }
 }
 require('gitsigns').setup {
     current_line_blame = true,
 }
-require("true-zen").setup {}
 require("auto-save").setup {}
+
+require('trouble').setup {}
+require('todo-comments').setup {}
+require('go').setup({
+  trouble = true,
+})
+
+-- Coc Config
+-- Setup formatexpr specified filetype(s)
+vim.api.nvim_create_autocmd("FileType", {
+    group = "CocGroup",
+    pattern = "typescript,json",
+    command = "setl formatexpr=CocAction('formatSelected')",
+    desc = "Setup formatexpr specified filetype(s)."
+})
+
+-- Update signature help on jump placeholder
+vim.api.nvim_create_autocmd("User", {
+    group = "CocGroup",
+    pattern = "CocJumpPlaceholder",
+    command = "call CocActionAsync('showSignatureHelp')",
+    desc = "Update signature help on jump placeholder"
+})
+
+--

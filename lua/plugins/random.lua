@@ -15,7 +15,8 @@ return {
 	'honza/vim-snippets',
 
 	'mhinz/vim-startify',
-	'fatih/vim-go',
+	-- 'fatih/vim-go',
+
 
 	{ 'neoclide/coc.nvim', branch = 'release' },
 
@@ -34,6 +35,22 @@ return {
 
 	--- Highlight, edit, and navigate code using a fast incremental parsing library
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
+
+	-- Golang
+	{
+		"ray-x/go.nvim",
+	  dependencies = {  -- optional packages
+		"ray-x/guihua.lua",
+		"neovim/nvim-lspconfig",
+		"nvim-treesitter/nvim-treesitter",
+	  },
+	  config = function()
+		require("go").setup()
+	  end,
+	  event = {"CmdlineEnter"},
+	  ft = {"go", 'gomod'},
+	  build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+	},
 
 	--- comments for jsx,tsx
 	'tpope/vim-commentary',
@@ -66,12 +83,22 @@ return {
 	{ "junegunn/fzf", build = ":call fzf#install()" },
 	'junegunn/fzf.vim',
 
-	'Pocco81/true-zen.nvim',
 	'Pocco81/auto-save.nvim',
 
 	'https://gitlab.com/gi1242/vim-emoji-ab.git',
 	'xiyaowong/transparent.nvim',
 
+	-- Integretions with tmux
+	{ 'christoomey/vim-tmux-navigator', lazy = false },
+
 	'github/copilot.vim',
+
+	'puremourning/vimspector',
+
+	-- trouble
+	'folke/trouble.nvim',
+
+	-- todo comments
+	'folke/todo-comments.nvim',
 }
 
