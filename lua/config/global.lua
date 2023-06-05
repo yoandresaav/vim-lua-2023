@@ -37,4 +37,4 @@ vim.g.go_auto_type_info = 1
 -- vim.g.copilot_filetypes = {'gitcommit', 'markdown', 'yaml'}
 --
 
-g.vimspector_enable_mappings = 'VISUAL_STUDIO'
+-- g.vimspector_enable_mappings = 'VISUAL_STUDIO'

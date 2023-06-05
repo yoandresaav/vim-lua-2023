@@ -11,6 +11,7 @@ local cmd = vim.cmd
 --     augroup end
 -- ]]
 
+
 -- " Find word under the cursor
 cmd [[
     command! -bang -nargs=* RgExact
