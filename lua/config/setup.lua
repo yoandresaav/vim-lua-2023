@@ -148,3 +148,11 @@ vim.api.nvim_create_autocmd("User", {
 
 
 --   require("mason").setup()
+
+require("onedarkpro").setup({
+  options = {
+    transparency = true,
+    terminal_colors = true,
+    cursorline = true
+  }
+})

@@ -194,5 +194,10 @@ return {
     "EdenEast/nightfox.nvim",
     lazy = true,
   },
+  -- OneDarkPro
+  {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000 -- Ensure it loads first
+  }
 }
 

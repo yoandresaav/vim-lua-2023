@@ -93,6 +93,10 @@ return {
 
 	'github/copilot.vim',
 
+	-- Tags
+	'ludovicchabant/vim-gutentags',
+	{ 'kristijanhusak/vim-js-file-import', build = 'npm install' },
+
 	-- 'puremourning/vimspector',
 
 	-- -- trouble

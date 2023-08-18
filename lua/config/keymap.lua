@@ -16,19 +16,6 @@ vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = 
 vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true, silent = true})
 
 
--- Coc Format selected text
-vim.api.nvim_set_keymap('n', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('x', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
-
--- Coc goto code navigation
-vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'gy', '<Plug>(coc-type-definition)', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'gi', '<Plug>(coc-implementation)', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', {noremap = true, silent = true})
-
-
--- Symbol renamig
-vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', {noremap = true, silent = true})
 
 
 -- Config ps telescope
@@ -67,7 +54,6 @@ vim.api.nvim_set_keymap('n', '<leader>gb', ':Git blame<CR>', {noremap = true, si
 
 
 -- Find under cursor
-
 
 
 -- Config Fugitive
@@ -121,6 +107,21 @@ telescope.setup {
   -- },
 }
 
+-- Coc Format selected text
+vim.api.nvim_set_keymap('n', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('x', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
+
+-- Coc goto code navigation
+vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'gy', '<Plug>(coc-type-definition)', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'gi', '<Plug>(coc-implementation)', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', {noremap = true, silent = true})
+
+
+-- Symbol renamig
+vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', {noremap = true, silent = true})
+
+
 vim.api.nvim_create_augroup("CocGroup", {})
 vim.api.nvim_create_autocmd("CursorHold", {
     group = "CocGroup",
@@ -148,6 +149,15 @@ keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
 keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 -- Resume latest coc list
 keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
+
+-- Mappings for CoCDiagnostics
+-- Show all diagnostics one file
+keyset("n", "<space>qf", ":<C-u>CocDiagnostics<cr>", opts)
+-- Go to next diagnostic
+keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", {silent = true})
+keyset("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
+
+
 
 
 -- keyset('n', '<F5>', function() require('dap').continue() end)
