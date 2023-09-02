@@ -20,7 +20,7 @@ return {
 
 	{ 'neoclide/coc.nvim', branch = 'release' },
 
-	{ 'ms-jpq/chadtree', branch = 'chad', build = { 'python3 -m chadtree deps'}},
+	-- { 'ms-jpq/chadtree', branch = 'chad', build = { 'python3 -m chadtree deps'}},
 
 	 --- Alignment
 	'junegunn/vim-easy-align',
@@ -96,6 +96,7 @@ return {
 	-- Tags
 	'ludovicchabant/vim-gutentags',
 	{ 'kristijanhusak/vim-js-file-import', build = 'npm install' },
+
 
 	-- 'puremourning/vimspector',
 

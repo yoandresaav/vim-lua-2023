@@ -5,9 +5,8 @@ local keyset = vim.keymap.set
 --
 
 -- Map chadtree
-vim.api.nvim_set_keymap('n', '<leader>t', ':CHADopen<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>k', ':call setqflist([])<CR>', {noremap = true, silent = true})
-
+-- vim.api.nvim_set_keymap('n', '<leader>t', ':CHADopen<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<leader>k', ':call setqflist([])<CR>', {noremap = true, silent = true})
 
 -- Telescope
 vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files hidden=true<CR>', {noremap = true, silent = true})
@@ -16,11 +15,8 @@ vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = 
 vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true, silent = true})
 
 
-
-
 -- Config ps telescope
 vim.api.nvim_set_keymap('n', '<leader>ps', ':Telescope live_grep<CR>', {noremap = true, silent = true})
-
 
 -- Config tabs movement
 vim.api.nvim_set_keymap('n', '<leader>.', ':BufferNext<CR>', {noremap = true, silent = true})
@@ -157,7 +153,9 @@ keyset("n", "<space>qf", ":<C-u>CocDiagnostics<cr>", opts)
 keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", {silent = true})
 keyset("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
 
-
+-- Mappings for CoC-Explore actions
+keyset("n", "<leader>t", ":<C-u>CocCommand explorer<cr>", opts)
+keyset("n", "<leader>te", ":<C-u>CocCommand explorer --preset floating<cr>", opts)
 
 
 -- keyset('n', '<F5>', function() require('dap').continue() end)

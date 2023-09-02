@@ -42,6 +42,7 @@ opt.swapfile=false
 opt.termguicolors=true
 opt.autowrite=true
 opt.modifiable=true
+-- opt.autochdir=true
 
 -- config columns 80
 opt.colorcolumn="80"
