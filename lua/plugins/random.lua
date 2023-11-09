@@ -2,6 +2,28 @@ return {
 	--- Defaults everyone can agree on
 	'tpope/vim-sensible',
 
+	'SirVer/ultisnips',
+	'honza/vim-snippets',
+	'quangnguyen30192/cmp-nvim-ultisnips',
+
+
+	--- CMP
+ 	'hrsh7th/nvim-cmp',
+	'neovim/nvim-lspconfig',
+	'hrsh7th/cmp-nvim-lsp',
+	'hrsh7th/cmp-buffer',
+	'hrsh7th/cmp-path',
+	'hrsh7th/cmp-cmdline',
+
+	-- Adds vscode-like pictograms to neovim built-in lsp
+	'onsails/lspkind.nvim',
+
+	'nvim-lua/plenary.nvim',
+	'nvim-lua/popup.nvim',
+	'nvim-telescope/telescope.nvim',
+	'nvim-telescope/telescope-fzy-native.nvim',
+
+
 	'nvim-lualine/lualine.nvim',
 	'nvim-tree/nvim-web-devicons',
 
@@ -11,27 +33,16 @@ return {
 	--- Icons
 	'ryanoasis/vim-devicons',
 
-	'SirVer/ultisnips',
-	'honza/vim-snippets',
-
+	-- Startify
 	'mhinz/vim-startify',
 	-- 'fatih/vim-go',
-
-
 	{ 'neoclide/coc.nvim', branch = 'release' },
-
-	-- { 'ms-jpq/chadtree', branch = 'chad', build = { 'python3 -m chadtree deps'}},
 
 	 --- Alignment
 	'junegunn/vim-easy-align',
 
 	--- Registers
 	'junegunn/vim-peekaboo',
-
-	'nvim-lua/popup.nvim',
-	'nvim-lua/plenary.nvim',
-	'nvim-telescope/telescope.nvim',
-	'nvim-telescope/telescope-fzy-native.nvim',
 
 	--- Highlight, edit, and navigate code using a fast incremental parsing library
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
@@ -41,7 +52,7 @@ return {
 		"ray-x/go.nvim",
 	  dependencies = {  -- optional packages
 		"ray-x/guihua.lua",
-		"neovim/nvim-lspconfig",
+	    'neovim/nvim-lspconfig',
 		"nvim-treesitter/nvim-treesitter",
 	  },
 	  config = function()
@@ -63,12 +74,9 @@ return {
 	'peitalin/vim-jsx-typescript',
 
 	--- Configure TABS
-	-- 'kyazdani42/nvim-web-devicons',
 	'romgrk/barbar.nvim',
 
 	--- Match tags
-	-- 'leafOfTree/vim-matchtag',
-
 	'Darazaki/indent-o-matic',
 	{ 'styled-components/vim-styled-components', branch = 'main' },
 
@@ -84,85 +92,31 @@ return {
 	'junegunn/fzf.vim',
 
 	'Pocco81/auto-save.nvim',
-
 	'https://gitlab.com/gi1242/vim-emoji-ab.git',
-	'xiyaowong/transparent.nvim',
 
 	-- Integretions with tmux
 	{ 'christoomey/vim-tmux-navigator', lazy = false },
-
-	'github/copilot.vim',
+	{
+	  "zbirenbaum/copilot.lua",
+	  cmd = "Copilot",
+	  event = "InsertEnter",
+	  config = function()
+		require("copilot").setup({
+			suggestion = { enabled = false },
+			panel = { enabled = false },
+		})
+	  end,
+	},
+	{
+	  "zbirenbaum/copilot-cmp",
+	  event = { "InsertEnter", "LspAttach" },
+	  fix_pairs = true,
+	  config = function ()
+		require("copilot_cmp").setup()
+	  end
+	},
 
 	-- Tags
-	'ludovicchabant/vim-gutentags',
 	{ 'kristijanhusak/vim-js-file-import', build = 'npm install' },
-
-
-	-- 'puremourning/vimspector',
-
-	-- -- trouble
-	-- 'folke/trouble.nvim',
-
-	-- todo comments
-	-- 'folke/todo-comments.nvim',
-	--
-	-- { "folke/neodev.nvim", opts = {} },
-	-- Debug
-	-- {
-	-- lazy = true,
-    -- "rcarriga/nvim-dap-ui",
-    -- dependencies = "mfussenegger/nvim-dap",
-    -- config = function()
-      -- local dap = require("dap")
-      -- local dapui = require("dapui")
-      -- dapui.setup()
-      -- dap.listeners.after.event_initialized["dapui_config"] = function()
-        -- dapui.open()
-      -- end
-      -- dap.listeners.before.event_terminated["dapui_config"] = function()
-        -- dapui.close()
-      -- end
-      -- dap.listeners.before.event_exited["dapui_config"] = function()
-        -- dapui.close()
-      -- end
-    -- end
-  -- },
-    -- "mfussenegger/nvim-dap",
-  -- {
-    -- "mfussenegger/nvim-dap-python",
-    -- ft = "python",
-    -- dependencies = {
-      -- "mfussenegger/nvim-dap",
-      -- "rcarriga/nvim-dap-ui",
-    -- },
-	-- config = function(_, opts)
-      -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-      -- require("dap-python").setup(path)
-      -- -- require("core.utils").load_mappings("dap_python")
-    -- end,
-  -- },
-  -- {
-    -- "jose-elias-alvarez/null-ls.nvim",
-    -- ft = {"python"},
-    -- opts = function()
-      -- return require "config.null-ls"
-    -- end,
-  -- },
-   -- {
-    -- "neovim/nvim-lspconfig",
-  -- },
-  -- {
-    -- "williamboman/mason.nvim",
-	-- build = ":MasonUpdate",
-    -- opts = {
-      -- ensure_installed = {
-        -- "black",
-        -- "debugpy",
-        -- "mypy",
-        -- "ruff",
-        -- "pyright",
-      -- },
-    -- },
-  -- },
 }
 

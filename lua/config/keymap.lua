@@ -5,8 +5,6 @@ local keyset = vim.keymap.set
 --
 
 -- Map chadtree
--- vim.api.nvim_set_keymap('n', '<leader>t', ':CHADopen<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<leader>k', ':call setqflist([])<CR>', {noremap = true, silent = true})
 
 -- Telescope
 vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files hidden=true<CR>', {noremap = true, silent = true})
@@ -58,50 +56,41 @@ vim.api.nvim_set_keymap('n', '<leader>gh', ':diffget //3<CR>', {noremap = true, 
 vim.api.nvim_set_keymap('n', '<leader>gu', ':diffget //2<CR>', {noremap = true, silent = true})
 
 
--- Config vimspector
--- vim.api.nvim_set_keymap('n', '<leader>dl', ':call vimspector#Launch()<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<leader>dr', ':call vimspector#Reset()<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<leader>dc', ':call vimspector#Continue()<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<leader>ds', ':call vimspector#StepOver()<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<leader>di', ':call vimspector#StepInto()<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<leader>do', ':call vimspector#StepOut()<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<leader>de', ':call vimspector#Restart()<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<leader>dt', ':call vimspector#Stop()<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<leader>db', ':call vimspector#ToggleBreakpoint()<CR>', {noremap = true, silent = true})
-
--- Lua
--- keyset("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
---   {silent = true, noremap = true}
--- )
--- keyset("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
---   {silent = true, noremap = true}
--- )
--- keyset("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
---   {silent = true, noremap = true}
--- )
--- keyset("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
---   {silent = true, noremap = true}
--- )
--- keyset("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
---   {silent = true, noremap = true}
--- )
--- keyset("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
---   {silent = true, noremap = true}
--- )
 
 local actions = require("telescope.actions")
 -- local trouble = require("trouble.providers.telescope")
 
 local telescope = require("telescope")
 
-telescope.setup {
-  -- defaults = {
-  --   mappings = {
-  --     i = { ["<c-t>"] = trouble.open_with_trouble },
-  --     n = { ["<c-t>"] = trouble.open_with_trouble },
-  --   },
-  -- },
-}
+telescope.setup {}
+
+-- Always show the signcolumn, otherwise it would shift the text each time
+-- diagnostics appeared/became resolved
+vim.opt.signcolumn = "yes"
+
+local keyset = vim.keymap.set
+-- Autocomplete
+function _G.check_back_space()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
+-- Use Tab for trigger completion with characters ahead and navigate
+-- NOTE: There's always a completion item selected by default, you may want to enable
+-- no select by setting `"suggest.noselect": true` in your configuration file
+-- NOTE: Use command ':verbose imap <tab>' to make sure Tab is not mapped by
+-- other plugins before putting this into your config
+local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
+-- keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+-- keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+
+-- Make <CR> to accept selected completion item or notify coc.nvim to format
+-- <C-g>u breaks current undo, please make your own choice
+keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
+
+
+-- Use <c-space> to trigger completion
+keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
 
 -- Coc Format selected text
 vim.api.nvim_set_keymap('n', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
@@ -113,10 +102,8 @@ vim.api.nvim_set_keymap('n', 'gy', '<Plug>(coc-type-definition)', {noremap = tru
 vim.api.nvim_set_keymap('n', 'gi', '<Plug>(coc-implementation)', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', {noremap = true, silent = true})
 
-
 -- Symbol renamig
 vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', {noremap = true, silent = true})
-
 
 vim.api.nvim_create_augroup("CocGroup", {})
 vim.api.nvim_create_autocmd("CursorHold", {
@@ -157,39 +144,16 @@ keyset("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
 keyset("n", "<leader>t", ":<C-u>CocCommand explorer<cr>", opts)
 keyset("n", "<leader>te", ":<C-u>CocCommand explorer --preset floating<cr>", opts)
 
+-- keyset("n", "<leader>K", ":<C-u>CocCommand ShowDocumentation()<cr>", opts)
+function _G.show_docs()
+    local cw = vim.fn.expand('<cword>')
+    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
+        vim.api.nvim_command('h ' .. cw)
+    elseif vim.api.nvim_eval('coc#rpc#ready()') then
+        vim.fn.CocActionAsync('doHover')
+    else
+        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+    end
+end
+keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 
--- keyset('n', '<F5>', function() require('dap').continue() end)
--- keyset('n', '<F10>', function() require('dap').step_over() end)
--- keyset('n', '<F11>', function() require('dap').step_into() end)
--- keyset('n', '<F12>', function() require('dap').step_out() end)
--- keyset('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
--- keyset('n', '<Leader>B', function() require('dap').set_breakpoint() end)
--- keyset('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
--- keyset('n', '<Leader>dr', function() require('dap').repl.open() end)
--- keyset('n', '<Leader>dl', function() require('dap').run_last() end)
--- keyset({'n', 'v'}, '<Leader>dh', function()
---   require('dap.ui.widgets').hover()
--- end)
--- keyset({'n', 'v'}, '<Leader>dp', function()
---   require('dap.ui.widgets').preview()
--- end)
--- keyset('n', '<Leader>df', function()
---   local widgets = require('dap.ui.widgets')
---   widgets.centered_float(widgets.frames)
--- end)
--- keyset('n', '<Leader>ds', function()
---   local widgets = require('dap.ui.widgets')
---   widgets.centered_float(widgets.scopes)
--- end)
-
--- keyset('n', '<Leader>dn', function()
---   require('dap-python').test_method()
--- end)
-
--- keyset('n', '<Leader>df', function()
---   require('dap-python').test_class()
--- end)
-
--- keyset('v', '<Leader>ds', function()
---   require('dap-python').debug_selection()
--- end)

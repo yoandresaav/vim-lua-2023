@@ -1,16 +1,6 @@
 
 local cmd = vim.cmd
 
--- cmd [[
---     augroup reactgroup
---         autocmd!
---         autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
---         autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
---         autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
---         autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
---     augroup end
--- ]]
-
 
 -- " Find word under the cursor
 cmd [[
@@ -22,11 +12,3 @@ cmd [[
     nmap <Leader>G :execute 'RgExact ' . expand('<cword>') <Cr>
 ]]
 
--- cmd [[
---     " (Line-wrapped for legibility)
---     autocmd BufReadPre *
---         \ let f=getfsize(expand("<afile>"))
---         \ | if f > 100000 || f == -2
---         \ | let b:copilot_enabled = v:false
---         \ | endif
--- ]]

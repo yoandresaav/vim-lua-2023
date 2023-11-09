@@ -1,6 +1,6 @@
 {
   "explorer.openAction.for.directory": "expandOrCollapse",
-  "explorer.width": 60,
+  "explorer.width": 40,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.showHiddenFiles": true,
   "explorer.file.reveal.auto": true,
@@ -29,5 +29,15 @@
   "eslint.autoFixOnSave": false,
   "eslint.packageManager": "yarn",
   "prettier.singleQuote": true,
-  "prettier.printWidth": 100
+  "prettier.printWidth": 100,
+  "snippets.priority": 2,
+  "snippets.autoTrigger": true,
+  "snippets.ultisnips.enable": true,
+  "languageserver": {
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      "filetypes": ["vim", "eruby", "markdown", "yaml"]
+    }
+  },
 }
