@@ -27,18 +27,3 @@ vim.g.go_fmt_command = "goimports"
 
 vim.g.go_auto_type_info = 1
 
--- Airline
--- vim.g.airline_powerline_fonts = 1
--- vim.g.airline#extensions#tabline#enabled = 1
--- vim.g.airline#extensions#tabline#left_sep = ' '
--- vim.g.airline_extensions = []
-
--- Enable Copilot for the gitcommit, markdown and yaml filetypes
--- vim.g.copilot_filetypes = {'gitcommit', 'markdown', 'yaml'}
--- vim.g.copilot_filetypes = {gitcommit = false, markdown = false, xml = false, yaml = false, json = false}
---
-
--- g.vimspector_enable_mappings = 'VISUAL_STUDIO'
--- g.copilot_assume_mapped = true
--- g.copilot_not_tab_map = true
--- vim.api.nvim_set_keymap("i", "<c-j>", ':copilot#Accept("<CR>")', { silent = true, expr = true })

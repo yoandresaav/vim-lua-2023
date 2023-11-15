@@ -46,16 +46,10 @@ vim.api.nvim_set_keymap('n', '<leader>bw', ':BufferOrderByBufferNumber', {norema
 -- Git blame
 vim.api.nvim_set_keymap('n', '<leader>gb', ':Git blame<CR>', {noremap = true, silent = true})
 
-
--- Find under cursor
-
-
 -- Config Fugitive
 vim.api.nvim_set_keymap('n', '<leader>gs', ':Git blame<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gh', ':diffget //3<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gu', ':diffget //2<CR>', {noremap = true, silent = true})
-
-
 
 local actions = require("telescope.actions")
 -- local trouble = require("trouble.providers.telescope")

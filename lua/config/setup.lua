@@ -6,7 +6,8 @@
 -- Configue LSP
 
 
-require('telescope').setup{
+require('telescope').load_extension('dap')
+require('telescope'). setup{
   defaults = {
     file_ignore_patterns = {"node_modules", ".venv", "static", "yarn.lock", ".git"}
   },
@@ -234,46 +235,14 @@ cmp.setup {
 vim.g.coc_global_extensions = { 'coc-snippets' }
 
 
---
---
---
---DEBUG
--- require("neodev").setup({
---   library = { plugins = { "nvim-dap-ui" }, types = true },
--- })
 
--- local dap = require('dap')
--- dap.configurations.python = {
---   {
---     type = 'python';
---     request = 'launch';
---     name = "Launch file";
---     program = "${file}";
---     pythonPath = function()
---       -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
---       -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
---       -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
---       local cwd = vim.fn.getcwd()
---       if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
---         return cwd .. '/venv/bin/python'
---       elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
---         return cwd .. '/.venv/bin/python'
---       else
---         return '/usr/bin/python'
---       end
---     end;
---   },
--- }
--- table.insert(dap.configurations.python, {
---   type = 'python',
---   request = 'launch',
---   name = 'Django Listopro',
---   program = vim.fn.getcwd() .. '/manage.py',  -- NOTE: Adapt path to manage.py as needed
---   args = {'runserver', '--noreload'},
--- })
-
-
---   require("mason").setup()
+require("mason").setup()
+require("mason-nvim-dap").setup()
+require("mason-lspconfig").setup()
+-- require("lspsaga").setup()
+require('dap')
+require('dap.ext.vscode').load_launchjs()
+-- require('dbg.python')
 
 require("onedarkpro").setup({
   options = {
