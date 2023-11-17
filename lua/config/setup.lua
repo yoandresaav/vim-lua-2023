@@ -7,6 +7,7 @@
 
 
 require('telescope').load_extension('dap')
+require("telescope").load_extension("notify")
 require('telescope'). setup{
   defaults = {
     file_ignore_patterns = {"node_modules", ".venv", "static", "yarn.lock", ".git"}
@@ -20,7 +21,13 @@ require('telescope'). setup{
 
 -- Configure lualine
 require('lualine').setup{
+  options = {
+    icons_enabled = true,
+    disabled_filetypes = {}
+  },
   sections = {
+    lualine_a = {'mode'},
+    -- lua_line_b = {'branch'},
     lualine_c = {{'filename', file_status = true, path = 1}},
   },
 }
@@ -43,6 +50,9 @@ require'nvim-treesitter.configs'.setup {
         comment = '// %s'
       }
    }
+  },
+  autotag = {
+    enable = true,
   },
 }
 require('gitsigns').setup {
@@ -250,4 +260,25 @@ require("onedarkpro").setup({
     terminal_colors = true,
     cursorline = true
   }
+})
+
+vim.notify = require("notify")
+
+require("noice").setup({
+  lsp = {
+    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true,
+    },
+  },
+  -- you can enable a preset for easier configuration
+  presets = {
+    bottom_search = true, -- use a classic bottom cmdline for search
+    command_palette = true, -- position the cmdline and popupmenu together
+    long_message_to_split = true, -- long messages will be sent to a split
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+    lsp_doc_border = false, -- add a border to hover docs and signature help
+  },
 })

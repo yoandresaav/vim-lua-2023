@@ -120,6 +120,12 @@ return {
 
 	-- Tags
 	{ 'kristijanhusak/vim-js-file-import', build = 'npm install' },
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		opts = {} -- this is equalent to setup({}) function
+	},
+	'windwp/nvim-ts-autotag',
 
 	'mfussenegger/nvim-dap',
 	"jay-babu/mason-nvim-dap.nvim",
@@ -131,7 +137,8 @@ return {
 			"rcarriga/nvim-dap-ui",
 		}
 	},
-	 {
+	'rcarriga/nvim-notify',
+	{
 		"rcarriga/nvim-dap-ui",
 			dependencies = "mfussenegger/nvim-dap",
 			config = function()
@@ -147,6 +154,21 @@ return {
 			  dap.listeners.before.event_exited["dapui_config"] = function()
 				dapui.close()
 			  end
-			end
-	},
+				end
+		},
+		{
+	  "folke/noice.nvim",
+	  event = "VeryLazy",
+	  opts = {
+		-- add any options here
+	  },
+	  dependencies = {
+		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+		"MunifTanjim/nui.nvim",
+		-- OPTIONAL:
+		--   `nvim-notify` is only needed, if you want to use the notification view.
+		--   If not available, we use `mini` as the fallback
+		"rcarriga/nvim-notify",
+		}
+	}
 }
