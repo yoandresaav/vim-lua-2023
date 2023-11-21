@@ -53,5 +53,5 @@ require('config.keymap')
 require('config.setup')
 require('config.autocmd')
 require('config.format')
-require('config.dap')
+-- require('config.dap')
 

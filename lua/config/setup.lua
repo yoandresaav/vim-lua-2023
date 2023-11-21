@@ -6,7 +6,7 @@
 -- Configue LSP
 
 
-require('telescope').load_extension('dap')
+-- require('telescope').load_extension('dap')
 require("telescope").load_extension("notify")
 require('telescope'). setup{
   defaults = {
@@ -247,11 +247,11 @@ vim.g.coc_global_extensions = { 'coc-snippets' }
 
 
 require("mason").setup()
-require("mason-nvim-dap").setup()
+-- require("mason-nvim-dap").setup()
 require("mason-lspconfig").setup()
 -- require("lspsaga").setup()
-require('dap')
-require('dap.ext.vscode').load_launchjs()
+-- require('dap')
+-- require('dap.ext.vscode').load_launchjs()
 -- require('dbg.python')
 
 require("onedarkpro").setup({
@@ -266,7 +266,6 @@ vim.notify = require("notify")
 
 require("noice").setup({
   lsp = {
-    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
     override = {
       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
       ["vim.lsp.util.stylize_markdown"] = true,
