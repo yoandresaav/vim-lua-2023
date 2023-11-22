@@ -7,7 +7,7 @@
 
 
 -- require('telescope').load_extension('dap')
-require("telescope").load_extension("notify")
+-- require("telescope").load_extension("notify")
 require('telescope'). setup{
   defaults = {
     file_ignore_patterns = {"node_modules", ".venv", "static", "yarn.lock", ".git"}
@@ -38,23 +38,27 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-    config =  {
-      javascript = {
-        __default = '// %s',
-        jsx_element = '{/* %s */}',
-        jsx_fragment = '{/* %s */}',
-        jsx_attribute = '// %s',
-        comment = '// %s'
-      }
-   }
-  },
+  -- context_commentstring = {
+  --   enable = true,
+  --   enable_autocmd = false,
+  --   config =  {
+  --     javascript = {
+  --       __default = '// %s',
+  --       jsx_element = '{/* %s */}',
+  --       jsx_fragment = '{/* %s */}',
+  --       jsx_attribute = '// %s',
+  --       comment = '// %s'
+  --     }
+  --  }
+  -- },
   autotag = {
     enable = true,
   },
 }
+vim.g.skip_ts_context_commentstring_module = true
+require('ts_context_commentstring').setup {}
+
+
 require('gitsigns').setup {
     current_line_blame = true,
     on_attach = function(bufnr)
@@ -98,6 +102,7 @@ require('gitsigns').setup {
       map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
     end
 }
+
 require("auto-save").setup {}
 
 -- require('trouble').setup {}
@@ -241,6 +246,29 @@ cmp.setup {
 }
 
 
+-- `/` cmdline setup.
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    {
+      name = 'cmdline',
+      option = {
+        ignore_cmds = { 'Man', '!' }
+      }
+    }
+  })
+})
+
 -- Enable coc-snippets
 vim.g.coc_global_extensions = { 'coc-snippets' }
 
@@ -254,30 +282,38 @@ require("mason-lspconfig").setup()
 -- require('dap.ext.vscode').load_launchjs()
 -- require('dbg.python')
 
-require("onedarkpro").setup({
-  options = {
-    transparency = true,
-    terminal_colors = true,
-    cursorline = true
+-- require("onedarkpro").setup({
+--   options = {
+--     transparency = true,
+--     terminal_colors = true,
+--     cursorline = true
+--   }
+-- })
+
+-- vim.notify = require("notify")
+
+-- require("noice").setup({
+--   lsp = {
+--     override = {
+--       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+--       ["vim.lsp.util.stylize_markdown"] = true,
+--       ["cmp.entry.get_documentation"] = true,
+--     },
+--   },
+--   -- you can enable a preset for easier configuration
+--   presets = {
+--     bottom_search = true, -- use a classic bottom cmdline for search
+--     command_palette = true, -- position the cmdline and popupmenu together
+--     long_message_to_split = true, -- long messages will be sent to a split
+--     inc_rename = false, -- enables an input dialog for inc-rename.nvim
+--     lsp_doc_border = false, -- add a border to hover docs and signature help
+--   },
+-- })
+
+require('dressing').setup({
+  input = {
+    win_options = {
+      winhighlight = 'NormalFloat:DiagnosticError'
+    }
   }
-})
-
-vim.notify = require("notify")
-
-require("noice").setup({
-  lsp = {
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
-    },
-  },
-  -- you can enable a preset for easier configuration
-  presets = {
-    bottom_search = true, -- use a classic bottom cmdline for search
-    command_palette = true, -- position the cmdline and popupmenu together
-    long_message_to_split = true, -- long messages will be sent to a split
-    inc_rename = false, -- enables an input dialog for inc-rename.nvim
-    lsp_doc_border = false, -- add a border to hover docs and signature help
-  },
 })

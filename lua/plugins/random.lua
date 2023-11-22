@@ -4,11 +4,48 @@ return {
 
 	'SirVer/ultisnips',
 	'honza/vim-snippets',
-	'quangnguyen30192/cmp-nvim-ultisnips',
-
+	-- 'quangnguyen30192/cmp-nvim-ultisnips',
 
 	--- CMP
- 	'hrsh7th/nvim-cmp',
+ 	{ 'hrsh7th/nvim-cmp',
+		dependencies = {
+			{ "quangnguyen30192/cmp-nvim-ultisnips",
+				config = function()
+					require("cmp_nvim_ultisnips").setup{}
+				end
+			},
+			"hrsh7th/cmp-nvim-lsp",
+		},
+		config = function()
+			local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+			require("cmp").setup({
+			  snippet = {
+				expand = function(args)
+				  vim.fn["UltiSnips#Anon"](args.body)
+				end,
+			  },
+			  sources = {
+				{ name = "ultisnips" },
+				-- more sources
+			  },
+			  -- recommended configuration for <Tab> people:
+			  -- mapping = {
+				-- ["<Tab>"] = cmp.mapping(
+				  -- function(fallback)
+					-- cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+				  -- end,
+				  -- { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
+				-- ),
+				-- ["<S-Tab>"] = cmp.mapping(
+				  -- function(fallback)
+					-- cmp_ultisnips_mappings.jump_backwards(fallback)
+				  -- end,
+				  -- { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
+				-- ),
+			  -- },
+			})
+		end
+	},
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	'neovim/nvim-lspconfig',
@@ -22,11 +59,22 @@ return {
 
 	'nvim-lua/plenary.nvim',
 	'nvim-lua/popup.nvim',
-	'nvim-telescope/telescope.nvim',
-	'nvim-telescope/telescope-fzy-native.nvim',
+
+	-- add telescope-fzf-native
+	{
+		"telescope.nvim",
+		dependencies = {
+		  "nvim-telescope/telescope-fzf-native.nvim",
+		  build = "make",
+		  config = function()
+			require("telescope").load_extension("fzf")
+		  end,
+		},
+	},
 
 
-	'nvim-lualine/lualine.nvim',
+
+	{ 'nvim-lualine/lualine.nvim', event = "VeryLazy" },
 	'nvim-tree/nvim-web-devicons',
 
 	--- quoting/parenthesizing made simple
@@ -47,7 +95,27 @@ return {
 	'junegunn/vim-peekaboo',
 
 	--- Highlight, edit, and navigate code using a fast incremental parsing library
-	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
+	{ 'nvim-treesitter/nvim-treesitter',
+	build = ':TSUpdate', 
+	opts = {
+		  ensure_installed = {
+			"bash",
+			"html",
+			"javascript",
+			"json",
+			"lua",
+			"markdown",
+			"markdown_inline",
+			"python",
+			"query",
+			"regex",
+			"tsx",
+			"typescript",
+			"vim",
+			"yaml",
+		  },
+		},
+	},
 
 	-- Golang
 	{
@@ -72,11 +140,18 @@ return {
 	--- Javascript syntax
 	'pangloss/vim-javascript',
 	'leafgarland/typescript-vim',
+
+	-- React syntax
 	'maxmellon/vim-jsx-pretty',
 	'peitalin/vim-jsx-typescript',
 
-	--- Configure TABS
-	'romgrk/barbar.nvim',
+	--- Configure TABS for buffers
+	{'romgrk/barbar.nvim', 
+		dependencies = {
+			'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+		},
+		init = function() vim.g.barbar_auto_setup = true end,
+	},
 
 	--- Match tags
 	'Darazaki/indent-o-matic',
@@ -94,7 +169,9 @@ return {
 	'junegunn/fzf.vim',
 
 	'Pocco81/auto-save.nvim',
-	'https://gitlab.com/gi1242/vim-emoji-ab.git',
+	-- 'https://gitlab.com/gi1242/vim-emoji-ab.git',
+
+
 
 	-- Integretions with tmux
 	{ 'christoomey/vim-tmux-navigator', lazy = false },
@@ -118,8 +195,8 @@ return {
 	  end
 	},
 
-	-- Tags
-	{ 'kristijanhusak/vim-js-file-import', build = 'npm install' },
+	-- CTags
+	-- { 'kristijanhusak/vim-js-file-import', build = 'npm install' },
 	{
 		'windwp/nvim-autopairs',
 		event = "InsertEnter",
@@ -137,7 +214,11 @@ return {
 	-- 		"rcarriga/nvim-dap-ui",
 	-- 	}
 	-- },
-	'rcarriga/nvim-notify',
+	--
+	--
+	--
+	-- 'rcarriga/nvim-notify',
+	--
 	-- {
 	-- 	"rcarriga/nvim-dap-ui",
 	-- 		dependencies = "mfussenegger/nvim-dap",
@@ -156,19 +237,24 @@ return {
 	-- 		  end
 	-- 		end
 	-- },
-	{
-	  "folke/noice.nvim",
-	  event = "VeryLazy",
-	  opts = {
-		-- add any options here
-	  },
-	  dependencies = {
-		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-		"MunifTanjim/nui.nvim",
-		-- OPTIONAL:
-		--   `nvim-notify` is only needed, if you want to use the notification view.
-		--   If not available, we use `mini` as the fallback
-		"rcarriga/nvim-notify",
-		}
-	}
+	-- {
+	--   "folke/noice.nvim",
+	--   event = "VeryLazy",
+	--   opts = {
+	-- 	-- add any options here
+	--   },
+	--   dependencies = {
+	-- 	-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+	-- 	"MunifTanjim/nui.nvim",
+	-- 	-- OPTIONAL:
+	-- 	--   `nvim-notify` is only needed, if you want to use the notification view.
+	-- 	--   If not available, we use `mini` as the fallback
+	-- 	-- "rcarriga/nvim-notify",
+	-- 	}
+	-- },
+		{
+			'stevearc/dressing.nvim',
+			opts = {},
+		},
+		"dstein64/vim-startuptime",
 }

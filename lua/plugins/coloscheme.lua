@@ -99,23 +99,23 @@ return {
   },
 
   -- nightfox
-  {
-    "EdenEast/nightfox.nvim",
-    lazy = true,
-    keys = {
-      { "<leader>l", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Select Colorscheme with Preview" }
-    },
-    config = function()
-      require("nightfox").setup {
-        options = {
-          transparent = true,
-          styles = {
-            comments = "italic",
-          },
-        },
-      }
-    end
-  },
+  -- {
+  --   "EdenEast/nightfox.nvim",
+  --   lazy = true,
+  --   keys = {
+  --     { "<leader>l", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Select Colorscheme with Preview" }
+  --   },
+  --   config = function()
+  --     require("nightfox").setup {
+  --       options = {
+  --         transparent = true,
+  --         styles = {
+  --           comments = "italic",
+  --         },
+  --       },
+  --     }
+  --   end
+  -- },
 
   -- kanagawa
   {
@@ -195,13 +195,13 @@ return {
     lazy = true,
   },
   -- OneDarkPro
-  {
-    "olimorris/onedarkpro.nvim",
-    priority = 1000 -- Ensure it loads first
-  },
+  -- {
+  --   "olimorris/onedarkpro.nvim",
+  --   priority = 1000 -- Ensure it loads first
+  -- },
   {
     "rebelot/kanagawa.nvim",
-    lazy = false
+    lazy = true,
   }
 }
 
