@@ -50,6 +50,7 @@ vim.api.nvim_create_autocmd("FileType", {
 require('config.basic')
 -- require('config.global') -- go syntax definitions
 require('config.keymap')
+-- local styled = require('config.styled')
 require('config.setup')
 require('config.autocmd')
 -- require('config.format')

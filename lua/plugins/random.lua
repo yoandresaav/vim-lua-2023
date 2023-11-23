@@ -68,11 +68,15 @@ return {
 		  build = "make",
 		  config = function()
 			require("telescope").load_extension("fzf")
+			-- vim.wo.foldmethod = "expr"
+			-- vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+			-- vim.wo.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) ]]
+			-- vim.wo.fillchars = "fold:\\"
+			-- vim.wo.foldnestmax = 3
+			-- vim.wo.foldminlines = 1
 		  end,
 		},
 	},
-
-
 
 	{ 'nvim-lualine/lualine.nvim', event = "VeryLazy" },
 	'nvim-tree/nvim-web-devicons',
@@ -96,42 +100,44 @@ return {
 
 	--- Highlight, edit, and navigate code using a fast incremental parsing library
 	{ 'nvim-treesitter/nvim-treesitter',
-	build = ':TSUpdate', 
-	opts = {
-		  ensure_installed = {
-			"bash",
-			"html",
-			"javascript",
-			"json",
-			"lua",
-			"markdown",
-			"markdown_inline",
-			"python",
-			"query",
-			"regex",
-			"tsx",
-			"typescript",
-			"vim",
-			"yaml",
-		  },
+		build = ':TSUpdate', 
+		opts = {
+			ensure_installed = {
+				"bash",
+				"html",
+				"javascript",
+				"json",
+				"lua",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"query",
+				"regex",
+				"tsx",
+				"typescript",
+				"vim",
+				"yaml",
+				"css",
+				"scss"
+			},
 		},
 	},
 
 	-- Golang
-	{
-		"ray-x/go.nvim",
-	  dependencies = {  -- optional packages
-		"ray-x/guihua.lua",
-	    'neovim/nvim-lspconfig',
-		"nvim-treesitter/nvim-treesitter",
-	  },
-	  config = function()
-		require("go").setup()
-	  end,
-	  event = {"CmdlineEnter"},
-	  ft = {"go", 'gomod'},
-	  build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-	},
+	-- {
+	-- 	"ray-x/go.nvim",
+	-- 	dependencies = {  -- optional packages
+	-- 		"ray-x/guihua.lua",
+	-- 		'neovim/nvim-lspconfig',
+	-- 		"nvim-treesitter/nvim-treesitter",
+	-- 	},
+	-- 	config = function()
+	-- 		require("go").setup()
+	-- 	end,
+	-- 	event = {"CmdlineEnter"},
+	-- 	ft = {"go", 'gomod'},
+	-- 	build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+	-- },
 
 	--- comments for jsx,tsx
 	'tpope/vim-commentary',
@@ -215,8 +221,6 @@ return {
 	-- 	}
 	-- },
 	--
-	--
-	--
 	-- 'rcarriga/nvim-notify',
 	--
 	-- {
@@ -256,5 +260,5 @@ return {
 			'stevearc/dressing.nvim',
 			opts = {},
 		},
-		"dstein64/vim-startuptime",
+		-- "dstein64/vim-startuptime",
 }

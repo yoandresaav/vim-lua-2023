@@ -55,6 +55,10 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
+
+-- styled.M.directives()
+-- styled.M.queries()
+
 vim.g.skip_ts_context_commentstring_module = true
 require('ts_context_commentstring').setup {}
 
@@ -107,9 +111,9 @@ require("auto-save").setup {}
 
 -- require('trouble').setup {}
 -- require('todo-comments').setup {}
-require('go').setup({
-  -- trouble = true,
-})
+-- require('go').setup({
+--   -- trouble = true,
+-- })
 
 -- Coc Config
 -- Setup formatexpr specified filetype(s)
