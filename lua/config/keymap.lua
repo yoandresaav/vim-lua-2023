@@ -3,52 +3,50 @@ local keyset = vim.keymap.set
 
 -- Telescope
 local opts = {noremap = true, silent = true}
-vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files hidden=true<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
+keyset('n', '<leader>ff', ':Telescope find_files hidden=true<CR>', opts)
+keyset('n', '<leader>fg', ':Telescope live_grep<CR>', opts)
+keyset('n', '<leader>fb', ':Telescope buffers<CR>', opts)
+keyset('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
 
 -- Config tabs movement
-vim.api.nvim_set_keymap('n', '<leader>.', ':BufferNext<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>,', ':BufferPrevious<CR>', opts)
+keyset('n', '<leader>.', ':BufferNext<CR>', opts)
+keyset('n', '<leader>,', ':BufferPrevious<CR>', opts)
 
 -- Reoder tabs
-vim.api.nvim_set_keymap('n', '<leader>m', ':BufferMovePrevious<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>M', ':BufferMoveNext<CR>', opts)
+keyset('n', '<leader>m', ':BufferMovePrevious<CR>', opts)
+keyset('n', '<leader>M', ':BufferMoveNext<CR>', opts)
 
 -- Config tabs keys
-vim.api.nvim_set_keymap('n', '<leader>1', ':BufferGoto 1<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>2', ':BufferGoto 2<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>3', ':BufferGoto 3<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>4', ':BufferGoto 4<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>5', ':BufferGoto 5<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>6', ':BufferGoto 6<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>7', ':BufferGoto 7<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>8', ':BufferGoto 8<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>9', ':BufferGoto 9<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>0', ':BufferLast<CR>', opts)
+keyset('n', '<leader>1', ':BufferGoto 1<CR>', opts)
+keyset('n', '<leader>2', ':BufferGoto 2<CR>', opts)
+keyset('n', '<leader>3', ':BufferGoto 3<CR>', opts)
+keyset('n', '<leader>4', ':BufferGoto 4<CR>', opts)
+keyset('n', '<leader>5', ':BufferGoto 5<CR>', opts)
+keyset('n', '<leader>6', ':BufferGoto 6<CR>', opts)
+keyset('n', '<leader>7', ':BufferGoto 7<CR>', opts)
+keyset('n', '<leader>8', ':BufferGoto 8<CR>', opts)
+keyset('n', '<leader>9', ':BufferGoto 9<CR>', opts)
+keyset('n', '<leader>0', ':BufferLast<CR>', opts)
 
 -- Sort automatically by...
 -- vim.cmd('autocmd BufWritePost plugins.lua PackerCompile') -- Auto compile when there are changes in plugins.lua
-vim.api.nvim_set_keymap('n', '<leader>bb', ':BufferOrderByBufferNumber', opts)
-vim.api.nvim_set_keymap('n', '<leader>bd', ':BufferOrderByDirectory', opts)
-vim.api.nvim_set_keymap('n', '<leader>bl', ':BufferOrderByLanguage', opts)
-vim.api.nvim_set_keymap('n', '<leader>bw', ':BufferOrderByBufferNumber', opts)
+keyset('n', '<leader>bb', ':BufferOrderByBufferNumber', opts)
+keyset('n', '<leader>bd', ':BufferOrderByDirectory', opts)
+keyset('n', '<leader>bl', ':BufferOrderByLanguage', opts)
+keyset('n', '<leader>bw', ':BufferOrderByBufferNumber', opts)
 
 -- Git blame
-vim.api.nvim_set_keymap('n', '<leader>gb', ':Git blame<CR>', opts)
+keyset('n', '<leader>gb', ':Git blame<CR>', opts)
 
 -- Config Fugitive
-vim.api.nvim_set_keymap('n', '<leader>gs', ':Git blame<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>gh', ':diffget //3<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>gu', ':diffget //2<CR>', opts)
-
+keyset('n', '<leader>gs', ':Git blame<CR>', opts)
+keyset('n', '<leader>gh', ':diffget //3<CR>', opts)
+keyset('n', '<leader>gu', ':diffget //2<CR>', opts)
 
 -- Always show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appeared/became resolved
 vim.opt.signcolumn = "yes"
 
-local keyset = vim.keymap.set
 -- Autocomplete
 function _G.check_back_space()
     local col = vim.fn.col('.') - 1
@@ -65,22 +63,21 @@ local opts = {silent = true, noremap = true, expr = true, replace_keycodes = fal
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
 -- keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
-
 -- Use <c-space> to trigger completion
 keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
 
 -- Coc Format selected text
-vim.api.nvim_set_keymap('n', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('x', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
+keyset('n', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
+keyset('x', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
 
 -- Coc goto code navigation
-vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'gy', '<Plug>(coc-type-definition)', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'gi', '<Plug>(coc-implementation)', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', {noremap = true, silent = true})
+keyset('n', 'gd', '<Plug>(coc-definition)', {noremap = true, silent = true})
+keyset('n', 'gy', '<Plug>(coc-type-definition)', {noremap = true, silent = true})
+keyset('n', 'gi', '<Plug>(coc-implementation)', {noremap = true, silent = true})
+keyset('n', 'gr', '<Plug>(coc-references)', {noremap = true, silent = true})
 
 -- Symbol renamig
-vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', {noremap = true, silent = true})
+keyset('n', '<leader>rn', '<Plug>(coc-rename)', {noremap = true, silent = true})
 
 vim.api.nvim_create_augroup("CocGroup", {})
 vim.api.nvim_create_autocmd("CursorHold", {
@@ -135,5 +132,5 @@ end
 keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 
 -- You probably also want to set a keymap to toggle aerial
-vim.keymap.set("n", "<leader>at", "<cmd>AerialToggle!<CR>")
+keyset("n", "<leader>at", "<cmd>AerialToggle!<CR>")
 
