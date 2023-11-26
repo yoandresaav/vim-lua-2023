@@ -38,7 +38,8 @@ opt.list=true
 opt.listchars="tab:»·,trail:·,nbsp:·,extends:>,precedes:<"
 opt.backspace="indent,eol,start"
 opt.wrap=false
-opt.shell='fish'
+-- opt.shell='fish'
+opt.shell='zsh'
 opt.breakindent=true
 opt.laststatus=2
 

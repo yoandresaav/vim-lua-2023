@@ -40,4 +40,5 @@
       "filetypes": ["vim", "eruby", "markdown", "yaml"]
     }
   },
+  "session.saveOnVimLeave": true
 }

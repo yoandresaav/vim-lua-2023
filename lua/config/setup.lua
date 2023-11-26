@@ -8,7 +8,7 @@
 
 -- require('telescope').load_extension('dap')
 -- require("telescope").load_extension("notify")
-require('telescope'). setup{
+require('telescope').setup{
   defaults = {
     file_ignore_patterns = {"node_modules", ".venv", "static", "yarn.lock", ".git"}
   },
@@ -108,12 +108,6 @@ require('gitsigns').setup {
 }
 
 require("auto-save").setup {}
-
--- require('trouble').setup {}
--- require('todo-comments').setup {}
--- require('go').setup({
---   -- trouble = true,
--- })
 
 -- Coc Config
 -- Setup formatexpr specified filetype(s)
@@ -321,3 +315,15 @@ require('dressing').setup({
     }
   }
 })
+
+
+require("aerial").setup({
+  -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+  on_attach = function(bufnr)
+    -- Jump forwards/backwards with '{' and '}'
+    vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+    vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+  end,
+})
+
+require("toggleterm").setup{}
