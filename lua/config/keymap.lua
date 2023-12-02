@@ -35,11 +35,8 @@ keyset('n', '<leader>bd', ':BufferOrderByDirectory', opts)
 keyset('n', '<leader>bl', ':BufferOrderByLanguage', opts)
 keyset('n', '<leader>bw', ':BufferOrderByBufferNumber', opts)
 
--- Git blame
-keyset('n', '<leader>gb', ':Git blame<CR>', opts)
-
 -- Config Fugitive
-keyset('n', '<leader>gs', ':Git blame<CR>', opts)
+keyset('n', '<leader>gb', ':Git blame<CR>', opts)
 keyset('n', '<leader>gh', ':diffget //3<CR>', opts)
 keyset('n', '<leader>gu', ':diffget //2<CR>', opts)
 
@@ -89,7 +86,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 -- Mappings for CoCList
 -- code actions and coc stuff
 ---@diagnostic disable-next-line: redefined-local
-local opts = {silent = true, nowait = true}
+local opts = { silent = true, nowait = true }
 -- Show all diagnostics
 keyset("n", "<space>a", ":<C-u>CocList diagnostics<cr>", opts)
 -- Manage extensions

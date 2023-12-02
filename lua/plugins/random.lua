@@ -237,9 +237,10 @@ return {
 	-- 	ft = {"go", 'gomod'},
 	-- 	build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
 	-- },
-
+	
 	--- comments for jsx,tsx
-	'tpope/vim-commentary',
+	-- TODO: just removed
+	'tpope/vim-commentary',  
 	'JoosepAlviste/nvim-ts-context-commentstring',
 
 	--- Javascript syntax
@@ -413,4 +414,5 @@ return {
 		end,
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
+	'xiyaowong/telescope-emoji.nvim',
 }

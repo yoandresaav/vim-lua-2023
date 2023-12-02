@@ -3,8 +3,7 @@
 -- Path: telescope.lua
 -- Configue Treesitter
 -- Path: treesitter.lua
--- Configue LSP
-
+-- Configue LSP 
 
 -- require('telescope').load_extension('dap')
 -- require("telescope").load_extension("notify")
@@ -18,6 +17,8 @@ require('telescope').setup{
     }
   }
 }
+
+require("telescope").load_extension("emoji")
 
 -- Configure lualine
 require('lualine').setup{
@@ -96,9 +97,10 @@ require('gitsigns').setup {
       map('n', '<leader>hu', gs.undo_stage_hunk)
       map('n', '<leader>hR', gs.reset_buffer)
       map('n', '<leader>hp', gs.preview_hunk)
-      map('n', '<leader>hb', function() gs.blame_line{full=true} end)
       map('n', '<leader>tb', gs.toggle_current_line_blame)
       map('n', '<leader>hd', gs.diffthis)
+
+      map('n', '<leader>hb', function() gs.blame_line{full=true} end)
       map('n', '<leader>hD', function() gs.diffthis('~') end)
       map('n', '<leader>td', gs.toggle_deleted)
 
@@ -327,3 +329,5 @@ require("aerial").setup({
 })
 
 require("toggleterm").setup{}
+
+vim.api.nvim_set_hl(0, 'Comment', { italic=true })

@@ -40,5 +40,6 @@
       "filetypes": ["vim", "eruby", "markdown", "yaml"]
     }
   },
-  "session.saveOnVimLeave": true
+  "session.saveOnVimLeave": true,
+  "workspace.ignoredFolders": ["$HOME", "$HOME/.cargo/**", "$HOME/.rustup/**"]
 }

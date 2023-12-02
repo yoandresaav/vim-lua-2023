@@ -1,4 +1,5 @@
 -- Yondre Saavedra 2023
+-- oil.vim plugin for file managrment (editing files like a buffer) seems ok, lets try in the next
 vim.g.mapleader = " "
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

@@ -78,7 +78,7 @@ return {
       require("gruvbox").setup {
         transparent_mode = true,
         overrides = {
-          String = { italic = false },
+          String = { italic = true },
         },
       }
     end
@@ -95,71 +95,6 @@ return {
       require("tokyonight").setup {
         transparent = true,
       }
-    end
-  },
-
-  -- nightfox
-  -- {
-  --   "EdenEast/nightfox.nvim",
-  --   lazy = true,
-  --   keys = {
-  --     { "<leader>l", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Select Colorscheme with Preview" }
-  --   },
-  --   config = function()
-  --     require("nightfox").setup {
-  --       options = {
-  --         transparent = true,
-  --         styles = {
-  --           comments = "italic",
-  --         },
-  --       },
-  --     }
-  --   end
-  -- },
-
-  -- kanagawa
-  {
-    "rebelot/kanagawa.nvim",
-    lazy = true,
-    keys = {
-      { "<leader>l", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Select Colorscheme with Preview" }
-    },
-    config = function()
-      require("kanagawa").setup {
-        transparent = true,
-        keywordStyle = {
-          italic = false,
-        },
-      }
-    end
-  },
-
-  -- catppuccin
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = true,
-    keys = {
-      { "<leader>l", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Select Colorscheme with Preview" }
-    },
-    config = function()
-      require("catppuccin").setup {
-        transparent_background = true,
-      }
-    end
-  },
-
-  -- vscode
-  {
-    "Mofiqul/vscode.nvim",
-    lazy = true,
-    keys = {
-      { "<leader>l", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Select Colorscheme with Preview" }
-    },
-    config = function()
-      require("vscode").setup({
-        transparent = true,
-      })
     end
   },
 
@@ -189,19 +124,33 @@ return {
       },
     },
   },
-  -- Nightfox 
-  {
-    "EdenEast/nightfox.nvim",
-    lazy = true,
-  },
-  -- OneDarkPro
-  -- {
-  --   "olimorris/onedarkpro.nvim",
-  --   priority = 1000 -- Ensure it loads first
-  -- },
   {
     "rebelot/kanagawa.nvim",
     lazy = true,
+    priority = 1000,
+    config = function()
+      require('kanagawa').setup({
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = true},
+        statementStyle = { bold = true },
+        transparent = true,
+        terminalColors = true,
+      })
+    end,
+  },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = true,
+    priority = 1000,
+    keys = {
+      { "<leader>l", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Select Colorscheme with Preview" }
+    },
+    opts = function()
+      return {
+        transparent = true,
+      }
+    end,
   }
 }
 
