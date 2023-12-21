@@ -14,7 +14,10 @@ require('telescope').setup{
   pickers = {
     find_files = {
       theme = "dropdown",
-    }
+    },
+    coc_references = {
+      theme = 'ivy',
+    },
   }
 }
 
@@ -331,3 +334,7 @@ require("aerial").setup({
 require("toggleterm").setup{}
 
 vim.api.nvim_set_hl(0, 'Comment', { italic=true })
+
+-- Minis setup
+require('mini.files').setup()
+require('mini.ai').setup()

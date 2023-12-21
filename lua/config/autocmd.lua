@@ -12,3 +12,4 @@ cmd [[
     nmap <Leader>G :execute 'RgExact ' . expand('<cword>') <Cr>
 ]]
 
+cmd('command! Autopep8 %! autopep8 -')

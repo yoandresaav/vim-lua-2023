@@ -68,7 +68,8 @@ keyset('n', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent 
 keyset('x', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
 
 -- Coc goto code navigation
-keyset('n', 'gd', '<Plug>(coc-definition)', {noremap = true, silent = true})
+local opts = { noremap = true, silent = true }
+keyset('n', 'gd', '<Plug>(coc-definition)', opts)
 keyset('n', 'gy', '<Plug>(coc-type-definition)', {noremap = true, silent = true})
 keyset('n', 'gi', '<Plug>(coc-implementation)', {noremap = true, silent = true})
 keyset('n', 'gr', '<Plug>(coc-references)', {noremap = true, silent = true})
@@ -96,7 +97,7 @@ keyset("n", "<space>c", ":<C-u>CocList commands<cr>", opts)
 -- Find symbol of current document
 keyset("n", "<space>o", ":<C-u>CocList outline<cr>", opts)
 -- Search workspace symbols
-keyset("n", "<space>s", ":<C-u>CocList -I symbols<cr>", opts)
+-- keyset("n", "<space>s", ":<C-u>CocList -I symbols<cr>", opts)
 -- Do default action for next item
 keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
 -- Do default action for previous item
@@ -113,21 +114,12 @@ keyset("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
 
 -- Mappings for CoC-Explore actions
 keyset("n", "<leader>t", ":<C-u>CocCommand explorer<cr>", opts)
-keyset("n", "<leader>te", ":<C-u>CocCommand explorer --preset floating<cr>", opts)
+-- keyset("n", "<leader>te", ":<C-u>CocCommand explorer --preset floating<cr>", opts)
 
--- keyset("n", "<leader>K", ":<C-u>CocCommand ShowDocumentation()<cr>", opts)
-function _G.show_docs()
-    local cw = vim.fn.expand('<cword>')
-    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
-        vim.api.nvim_command('h ' .. cw)
-    elseif vim.api.nvim_eval('coc#rpc#ready()') then
-        vim.fn.CocActionAsync('doHover')
-    else
-        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
-    end
-end
-keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 
 -- You probably also want to set a keymap to toggle aerial
 keyset("n", "<leader>at", "<cmd>AerialToggle!<CR>")
+
+-- Mappings for Mini.files
+keyset("n", "<leader>mf", "<cmd>lua MiniFiles.open()<CR>", opts)
 

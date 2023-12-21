@@ -4,6 +4,7 @@ local cmd = vim.cmd
 
 
 -- Basic config
+
 opt.encoding="utf-8"
 opt.fileencoding="utf-8"
 opt.fileencodings="utf-8"

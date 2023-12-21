@@ -1,6 +1,9 @@
 -- Yondre Saavedra 2023
--- oil.vim plugin for file managrment (editing files like a buffer) seems ok, lets try in the next
+-- oil.vim plugin for file management (editing files like a buffer) seems ok, lets try in the next
+
+-- mapleader should be setup before lazy
 vim.g.mapleader = " "
+
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

@@ -122,6 +122,7 @@ return {
 		"telescope.nvim",
 		dependencies = {
 		  "nvim-telescope/telescope-fzf-native.nvim",
+		  "jvgrootveld/telescope-zoxide",
 		  build = "make",
 		  config = function()
 			require("telescope").load_extension("fzf")
@@ -133,10 +134,23 @@ return {
 			-- vim.wo.foldminlines = 1
 		  end,
 		},
+		keys = {
+			{ "<leader>fz", "<cmd>Telescope zoxide list<cr>", desc = "Recent Folders" },
+		},
 	},
 
-	{ 'nvim-lualine/lualine.nvim', event = "VeryLazy" },
+	{
+		'nvim-lualine/lualine.nvim',
+		dependencies = {
+			{ "Pheon-Dev/pigeon", opts = {} },
+		},
+		event = "VeryLazy" 
+	},
+
 	'nvim-tree/nvim-web-devicons',
+	{ 'echasnovski/mini.nvim', version = '*' },
+	{ 'echasnovski/mini.files', version = '*' },
+	{ 'echasnovski/mini.ai', version = '*' },
 
 	--- quoting/parenthesizing made simple
 	'tpope/vim-surround',
@@ -147,6 +161,7 @@ return {
 	-- Startify
 	'mhinz/vim-startify',
 	-- 'fatih/vim-go',
+
 	{ 'neoclide/coc.nvim', branch = 'release' },
 
 	 --- Alignment
@@ -276,8 +291,6 @@ return {
 
 	'Pocco81/auto-save.nvim',
 	-- 'https://gitlab.com/gi1242/vim-emoji-ab.git',
-
-
 
 	-- Integretions with tmux
 	{ 'christoomey/vim-tmux-navigator', lazy = false },
