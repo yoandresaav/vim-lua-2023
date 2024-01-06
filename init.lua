@@ -4,7 +4,6 @@
 -- mapleader should be setup before lazy
 vim.g.mapleader = " "
 
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -19,9 +18,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins",{
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = { "tokyonight", "habamax", "gruvbox" } },
   defauls = {
-    colorscheme = "tokyonight",
+    -- colorscheme = "tokyonight",
+    colorscheme = "gruvbox",
     lazy = false,
   },
   spec = {
@@ -58,6 +58,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 require('config.basic')
+require('config.python')
 -- require('config.global') -- go syntax definitions
 require('config.keymap')
 -- local styled = require('config.styled')
@@ -66,3 +67,4 @@ require('config.autocmd')
 -- require('config.format')
 -- require('config.dap')
 
+vim.cmd('colorscheme gruvbox-material')

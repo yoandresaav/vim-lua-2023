@@ -59,5 +59,3 @@ opt.modifiable=true
 opt.background="dark"
 
 opt.colorcolumn="80"
-
-vim.cmd("colorscheme kanagawa")

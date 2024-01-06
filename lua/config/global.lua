@@ -1,6 +1,7 @@
 -- Default globals for the game.
 local g = vim.g
 
+
 vim.g.go_def_mapping_enabled = 0
 
 

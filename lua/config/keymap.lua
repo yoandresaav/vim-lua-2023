@@ -60,8 +60,8 @@ local opts = {silent = true, noremap = true, expr = true, replace_keycodes = fal
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
 -- keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
--- Use <c-space> to trigger completion
-keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
+-- Use <c-space> to trigger completion TODO: Check this is possible not work
+keyset("i", "<c-a>", "coc#refresh()", {silent = true, expr = true})
 
 -- Coc Format selected text
 keyset('n', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})

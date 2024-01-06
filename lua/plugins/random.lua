@@ -2,114 +2,11 @@ return {
 	--- Defaults everyone can agree on
 	'tpope/vim-sensible',
 
-	'SirVer/ultisnips',
-	'honza/vim-snippets',
-	-- 'quangnguyen30192/cmp-nvim-ultisnips',
-
-	--- CMP
- 	{ 'hrsh7th/nvim-cmp',
-		dependencies = {
-			{ "quangnguyen30192/cmp-nvim-ultisnips",
-				config = function()
-					require("cmp_nvim_ultisnips").setup{}
-				end
-			},
-			"hrsh7th/cmp-nvim-lsp",
-		},
-		config = function()
-			local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
-			require("cmp").setup({
-			  snippet = {
-				expand = function(args)
-				  vim.fn["UltiSnips#Anon"](args.body)
-				end,
-			  },
-			  sources = {
-				{ name = "ultisnips" },
-				-- more sources
-			  },
-			  -- recommended configuration for <Tab> people:
-			  -- mapping = {
-				-- ["<Tab>"] = cmp.mapping(
-				  -- function(fallback)
-					-- cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
-				  -- end,
-				  -- { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
-				-- ),
-				-- ["<S-Tab>"] = cmp.mapping(
-				  -- function(fallback)
-					-- cmp_ultisnips_mappings.jump_backwards(fallback)
-				  -- end,
-				  -- { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
-				-- ),
-			  -- },
-			})
-		end
-	},
-	-- {
-	--   "L3MON4D3/LuaSnip",
-	--   build = (not jit.os:find("Windows"))
-	-- 	  and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
-	-- 	or nil,
-	--   dependencies = {
-	-- 	"rafamadriz/friendly-snippets",
-	-- 	config = function()
-	-- 	  require("luasnip.loaders.from_vscode").lazy_load()
-	-- 	end,
-	--   },
-	--   opts = {
-	-- 	history = true,
-	-- 	delete_check_events = "TextChanged",
-	--   },
-	--   -- stylua: ignore
-	--   keys = {
-	-- 	{
-	-- 	  "<tab>",
-	-- 	  function()
-	-- 		return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-	-- 	  end,
-	-- 	  expr = true, silent = true, mode = "i",
-	-- 	},
-	-- 	{ "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-	-- 	{ "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-	--   },
-	-- },
-	-- {
-	--   "L3MON4D3/LuaSnip",
-	--   build = (not jit.os:find("Windows"))
-	-- 	  and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
-	-- 	or nil,
-	--   dependencies = {
-	-- 	"rafamadriz/friendly-snippets",
-	-- 	config = function()
-	-- 	  require("luasnip.loaders.from_vscode").lazy_load()
-	-- 	end,
-	--   },
-	--   opts = {
-	-- 	history = true,
-	-- 	delete_check_events = "TextChanged",
-	--   },
-	--   -- stylua: ignore
-	--   keys = {
-	-- 	{
-	-- 	  "<tab>",
-	-- 	  function()
-	-- 		return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-	-- 	  end,
-	-- 	  expr = true, silent = true, mode = "i",
-	-- 	},
-	-- 	{ "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-	-- 	{ "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-	--   },
-	-- },
+	{ 'Sirver/ultisnips', event = { 'InsertEnter' } },
+	-- 'honza/vim-snippets',
 
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
-	'neovim/nvim-lspconfig',
-	'hrsh7th/cmp-nvim-lsp',
-	'hrsh7th/cmp-buffer',
-	'hrsh7th/cmp-path',
-	'hrsh7th/cmp-cmdline',
 
 	-- Adds vscode-like pictograms to neovim built-in lsp
 	'onsails/lspkind.nvim',
@@ -148,9 +45,6 @@ return {
 	},
 
 	'nvim-tree/nvim-web-devicons',
-	{ 'echasnovski/mini.nvim', version = '*' },
-	{ 'echasnovski/mini.files', version = '*' },
-	{ 'echasnovski/mini.ai', version = '*' },
 
 	--- quoting/parenthesizing made simple
 	'tpope/vim-surround',
@@ -255,7 +149,7 @@ return {
 	
 	--- comments for jsx,tsx
 	-- TODO: just removed
-	'tpope/vim-commentary',  
+	'tpope/vim-commentary',
 	'JoosepAlviste/nvim-ts-context-commentstring',
 
 	--- Javascript syntax
@@ -267,7 +161,8 @@ return {
 	'peitalin/vim-jsx-typescript',
 
 	--- Configure TABS for buffers
-	{'romgrk/barbar.nvim', 
+	{
+		'romgrk/barbar.nvim', 
 		dependencies = {
 			'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
 		},
@@ -290,30 +185,29 @@ return {
 	'junegunn/fzf.vim',
 
 	'Pocco81/auto-save.nvim',
-	-- 'https://gitlab.com/gi1242/vim-emoji-ab.git',
 
 	-- Integretions with tmux
 	{ 'christoomey/vim-tmux-navigator', lazy = false },
-	{
-	  "zbirenbaum/copilot.lua",
-	  cmd = "Copilot",
-	  event = "InsertEnter",
-	  config = function()
-		require("copilot").setup({
-			suggestion = { enabled = false },
-			panel = { enabled = false },
-		})
-	  end,
-	},
-	{
-	  "zbirenbaum/copilot-cmp",
-	  -- after = { "copilot.lua" },
-	  -- event = { "InsertEnter", "LspAttach" },
-	  -- fix_pairs = true,
-	  config = function ()
-		require("copilot_cmp").setup()
-	  end
-	},
+	-- {
+	--   "zbirenbaum/copilot.lua",
+	--   cmd = "Copilot",
+	--   event = "InsertEnter",
+	--   config = function()
+	-- 	require("copilot").setup({
+	-- 		-- suggestion = { enabled = false },
+	-- 		-- panel = { enabled = false },
+	-- 	})
+	--   end,
+	-- },
+	-- {
+	--   "zbirenbaum/copilot-cmp",
+	--   -- after = { "copilot.lua" },
+	--   -- event = { "InsertEnter", "LspAttach" },
+	--   fix_pairs = true,
+	--   config = function ()
+	-- 	require("copilot_cmp").setup()
+	--   end
+	-- },
 
 	-- CTags
 	-- { 'kristijanhusak/vim-js-file-import', build = 'npm install' },
@@ -403,7 +297,6 @@ return {
 		 "nvim-tree/nvim-web-devicons"
 	  },
 	},
-	{'akinsho/toggleterm.nvim', version = "*", config = true},
 	{ "jose-elias-alvarez/null-ls.nvim", 
 		config = function()
 			local null_ls = require("null-ls")
@@ -412,13 +305,14 @@ return {
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.clang_format,
 					null_ls.builtins.formatting.eslint,
-					null_ls.builtins.formatting.lua_format,
+					null_ls.builtins.formatting.black,
 					null_ls.builtins.diagnostics.eslint,
 					null_ls.builtins.completion.spell,
 					null_ls.builtins.diagnostics.pylint.with({
 					  diagnostics_postprocess = function(diagnostic)
 						diagnostic.code = diagnostic.message_id
 					  end,
+					  prefer_local = ".venv/bin"
 					}),
 					null_ls.builtins.formatting.isort,
 					null_ls.builtins.formatting.black,
@@ -427,5 +321,76 @@ return {
 		end,
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	'xiyaowong/telescope-emoji.nvim',
+	{
+	  'stevearc/oil.nvim',
+	  opts = {},
+	  -- Optional dependencies
+	  dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
+	 {
+    'github/copilot.vim',
+    init = function()
+      vim.g.copilot_no_tab_map = true
+    end,
+    config = function()
+      vim.keymap.set('i', '<C-e>', [[copilot#Accept("\<CR>")]], {
+        silent = true,
+        expr = true,
+        script = true,
+        replace_keycodes = false,
+      })
+    end,
+  },
+  {
+	  "folke/noice.nvim",
+	  event = "VeryLazy",
+	  opts = {
+		-- add any options here
+	  },
+	  dependencies = {
+		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+		"MunifTanjim/nui.nvim",
+		-- OPTIONAL:
+		--   `nvim-notify` is only needed, if you want to use the notification view.
+		--   If not available, we use `mini` as the fallback
+		"rcarriga/nvim-notify",
+		}
+	},
+  {
+	  "rcarriga/nvim-notify",
+	  keys = {
+		{
+		  "<leader>un",
+		  function()
+			require("notify").dismiss({ silent = true, pending = true })
+		  end,
+		  desc = "Dismiss all Notifications",
+		},
+	  },
+	  opts = {
+		timeout = 3000,
+		max_height = function()
+		  return math.floor(vim.o.lines * 0.75)
+		end,
+		max_width = function()
+		  return math.floor(vim.o.columns * 0.75)
+		end,
+		on_open = function(win)
+		  vim.api.nvim_win_set_config(win, { zindex = 100 })
+		end,
+	  },
+	  init = function()
+		-- when noice is not enabled, install notify on VeryLazy
+		-- if not Util.has("noice.nvim") then
+		--   Util.on_very_lazy(function()
+		-- 	vim.notify = require("notify")
+		--   end)
+		-- end
+	  end,
+	  config = function()
+		require("notify").setup({
+			background_colour = "#000000",
+		})
+  end
+}
 }
