@@ -38,7 +38,13 @@
       "command": "efm-langserver",
       "args": [],
       "filetypes": ["vim", "eruby", "markdown", "yaml"]
-    }
+    },
+    "go": {
+      "command": "gopls",
+      "args": ["-remote=auto"],
+      "trace.server": "verbose",
+      "filetypes": ["go"]
+    },
   },
   "session.saveOnVimLeave": true,
   "workspace.ignoredFolders": ["$HOME", "$HOME/.cargo/**", "$HOME/.rustup/**"]

@@ -59,6 +59,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 require('config.basic')
 require('config.python')
+require('config.cpp')
 -- require('config.global') -- go syntax definitions
 require('config.keymap')
 -- local styled = require('config.styled')
@@ -67,4 +68,5 @@ require('config.autocmd')
 -- require('config.format')
 -- require('config.dap')
 
-vim.cmd('colorscheme gruvbox-material')
+-- vim.cmd('colorscheme gruvbox-material')
+vim.cmd('colorscheme onedark')

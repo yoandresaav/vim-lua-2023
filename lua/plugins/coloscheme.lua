@@ -151,6 +151,7 @@ return {
         transparent = true,
       }
     end,
-  }
+  },
+  { 'navarasu/onedark.nvim' }
 }
 

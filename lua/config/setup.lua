@@ -205,3 +205,10 @@ require("noice").setup({
     lsp_doc_border = false, -- add a border to hover docs and signature help
   },
 })
+
+require('onedark').setup {
+    style = 'darker',
+    transparent = true,
+}
+require('onedark').load()
+

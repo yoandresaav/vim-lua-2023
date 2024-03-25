@@ -126,7 +126,8 @@ return {
 				"vim",
 				"yaml",
 				"css",
-				"scss"
+				"scss",
+				"cpp"
 			},
 		},
 	},
@@ -392,5 +393,5 @@ return {
 			background_colour = "#000000",
 		})
   end
-}
+	}
 }

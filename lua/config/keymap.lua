@@ -116,7 +116,6 @@ keyset("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
 keyset("n", "<leader>t", ":<C-u>CocCommand explorer<cr>", opts)
 -- keyset("n", "<leader>te", ":<C-u>CocCommand explorer --preset floating<cr>", opts)
 
-
 -- You probably also want to set a keymap to toggle aerial
 keyset("n", "<leader>at", "<cmd>AerialToggle!<CR>")
 
