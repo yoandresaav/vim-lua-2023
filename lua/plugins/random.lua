@@ -132,22 +132,6 @@ return {
 		},
 	},
 
-	-- Golang
-	-- {
-	-- 	"ray-x/go.nvim",
-	-- 	dependencies = {  -- optional packages
-	-- 		"ray-x/guihua.lua",
-	-- 		'neovim/nvim-lspconfig',
-	-- 		"nvim-treesitter/nvim-treesitter",
-	-- 	},
-	-- 	config = function()
-	-- 		require("go").setup()
-	-- 	end,
-	-- 	event = {"CmdlineEnter"},
-	-- 	ft = {"go", 'gomod'},
-	-- 	build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-	-- },
-	
 	--- comments for jsx,tsx
 	-- TODO: just removed
 	'tpope/vim-commentary',
@@ -183,88 +167,22 @@ return {
 
 	--- FZF
 	{ "junegunn/fzf", build = ":call fzf#install()" },
+
 	'junegunn/fzf.vim',
 
 	'Pocco81/auto-save.nvim',
 
 	-- Integretions with tmux
 	{ 'christoomey/vim-tmux-navigator', lazy = false },
-	-- {
-	--   "zbirenbaum/copilot.lua",
-	--   cmd = "Copilot",
-	--   event = "InsertEnter",
-	--   config = function()
-	-- 	require("copilot").setup({
-	-- 		-- suggestion = { enabled = false },
-	-- 		-- panel = { enabled = false },
-	-- 	})
-	--   end,
-	-- },
-	-- {
-	--   "zbirenbaum/copilot-cmp",
-	--   -- after = { "copilot.lua" },
-	--   -- event = { "InsertEnter", "LspAttach" },
-	--   fix_pairs = true,
-	--   config = function ()
-	-- 	require("copilot_cmp").setup()
-	--   end
-	-- },
 
-	-- CTags
-	-- { 'kristijanhusak/vim-js-file-import', build = 'npm install' },
 	{
 		'windwp/nvim-autopairs',
 		event = "InsertEnter",
 		opts = {} -- this is equalent to setup({}) function
 	},
+
 	'windwp/nvim-ts-autotag',
 
-	-- 'mfussenegger/nvim-dap',
-	-- "jay-babu/mason-nvim-dap.nvim",
-	-- 'nvim-telescope/telescope-dap.nvim',
-	-- { 'mfussenegger/nvim-dap-python',
-	-- 	ft = 'python',
-	-- 	dependencies = { 
-	-- 		'mfussenegger/nvim-dap',
-	-- 		"rcarriga/nvim-dap-ui",
-	-- 	}
-	-- },
-	--
-	-- 'rcarriga/nvim-notify',
-	--
-	-- {
-	-- 	"rcarriga/nvim-dap-ui",
-	-- 		dependencies = "mfussenegger/nvim-dap",
-	-- 		config = function()
-	-- 		  local dap = require("dap")
-	-- 		  local dapui = require("dapui")
-	-- 		  dapui.setup()
-	-- 		  dap.listeners.after.event_initialized["dapui_config"] = function()
-	-- 			dapui.open()
-	-- 		  end
-	-- 		  dap.listeners.before.event_terminated["dapui_config"] = function()
-	-- 			dapui.close()
-	-- 		  end
-	-- 		  dap.listeners.before.event_exited["dapui_config"] = function()
-	-- 			dapui.close()
-	-- 		  end
-	-- 		end
-	-- },
-	-- {
-	--   "folke/noice.nvim",
-	--   event = "VeryLazy",
-	--   opts = {
-	-- 	-- add any options here
-	--   },
-	--   dependencies = {
-	-- 	-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-	-- 	"MunifTanjim/nui.nvim",
-	-- 	-- OPTIONAL:
-	-- 	--   `nvim-notify` is only needed, if you want to use the notification view.
-	-- 	--   If not available, we use `mini` as the fallback
-	-- 	-- "rcarriga/nvim-notify",
-	-- 	}
-	-- },
 	{
 		'stevearc/dressing.nvim',
 		opts = {},
@@ -278,8 +196,7 @@ return {
 			})
 		end,
 	},
-	-- "dstein64/vim-startuptime",
-	-- https://github.com/folke/todo-comments.nvim
+
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -289,6 +206,7 @@ return {
 			-- refer to the configuration section below
 		},
 	},
+
 	{
 	  'stevearc/aerial.nvim',
 	  opts = {},
@@ -298,6 +216,7 @@ return {
 		 "nvim-tree/nvim-web-devicons"
 	  },
 	},
+
 	{ "jose-elias-alvarez/null-ls.nvim", 
 		config = function()
 			local null_ls = require("null-ls")
@@ -322,27 +241,30 @@ return {
 		end,
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
+
 	{
 	  'stevearc/oil.nvim',
 	  opts = {},
 	  -- Optional dependencies
 	  dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
-	 {
-    'github/copilot.vim',
-    init = function()
-      vim.g.copilot_no_tab_map = true
-    end,
-    config = function()
-      vim.keymap.set('i', '<C-e>', [[copilot#Accept("\<CR>")]], {
-        silent = true,
-        expr = true,
-        script = true,
-        replace_keycodes = false,
-      })
-    end,
-  },
-  {
+
+	{
+		'github/copilot.vim',
+		init = function()
+		  vim.g.copilot_no_tab_map = true
+		end,
+		config = function()
+		  vim.keymap.set('i', '<C-e>', [[copilot#Accept("\<CR>")]], {
+			silent = true,
+			expr = true,
+			script = true,
+			replace_keycodes = false,
+		  })
+		end,
+	},
+
+	{
 	  "folke/noice.nvim",
 	  event = "VeryLazy",
 	  opts = {
@@ -357,7 +279,8 @@ return {
 		"rcarriga/nvim-notify",
 		}
 	},
-  {
+
+	{
 	  "rcarriga/nvim-notify",
 	  keys = {
 		{
@@ -392,6 +315,27 @@ return {
 		require("notify").setup({
 			background_colour = "#000000",
 		})
-  end
-	}
+	end
+	},
+
+	-- Lua
+	{
+	  "folke/twilight.nvim",
+	  opts = {
+		-- your configuration comes here
+		-- or leave it empty to use the default settings
+		-- refer to the configuration section below
+	  }
+	},
+
+	-- Lua
+	{
+	  "folke/zen-mode.nvim",
+	  opts = {
+		-- your configuration comes here
+		-- or leave it empty to use the default settings
+		-- refer to the configuration section below
+	  }
+	},
+	{ "David-Kunz/gen.nvim" },
 }
