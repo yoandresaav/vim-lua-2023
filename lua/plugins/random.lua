@@ -338,4 +338,8 @@ return {
 	  }
 	},
 	{ "David-Kunz/gen.nvim" },
+	{
+		'willothy/wezterm.nvim',
+		config = true
+	}
 }
