@@ -12,10 +12,6 @@ keyset('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
 keyset('n', '<leader>.', ':BufferNext<CR>', opts)
 keyset('n', '<leader>,', ':BufferPrevious<CR>', opts)
 
--- Reoder tabs
-keyset('n', '<leader>m', ':BufferMovePrevious<CR>', opts)
-keyset('n', '<leader>M', ':BufferMoveNext<CR>', opts)
-
 -- Config tabs keys
 keyset('n', '<leader>1', ':BufferGoto 1<CR>', opts)
 keyset('n', '<leader>2', ':BufferGoto 2<CR>', opts)
@@ -28,8 +24,11 @@ keyset('n', '<leader>8', ':BufferGoto 8<CR>', opts)
 keyset('n', '<leader>9', ':BufferGoto 9<CR>', opts)
 keyset('n', '<leader>0', ':BufferLast<CR>', opts)
 
+-- Reoder tabs
+keyset('n', '<leader>m', ':BufferMovePrevious<CR>', opts)
+keyset('n', '<leader>M', ':BufferMoveNext<CR>', opts)
+
 -- Sort automatically by...
--- vim.cmd('autocmd BufWritePost plugins.lua PackerCompile') -- Auto compile when there are changes in plugins.lua
 keyset('n', '<leader>bb', ':BufferOrderByBufferNumber', opts)
 keyset('n', '<leader>bd', ':BufferOrderByDirectory', opts)
 keyset('n', '<leader>bl', ':BufferOrderByLanguage', opts)
@@ -88,20 +87,27 @@ vim.api.nvim_create_autocmd("CursorHold", {
 -- code actions and coc stuff
 ---@diagnostic disable-next-line: redefined-local
 local opts = { silent = true, nowait = true }
+
 -- Show all diagnostics
 keyset("n", "<space>a", ":<C-u>CocList diagnostics<cr>", opts)
+
 -- Manage extensions
 keyset("n", "<space>e", ":<C-u>CocList extensions<cr>", opts)
+
 -- Show commands
 keyset("n", "<space>c", ":<C-u>CocList commands<cr>", opts)
+
 -- Find symbol of current document
 keyset("n", "<space>o", ":<C-u>CocList outline<cr>", opts)
+
 -- Search workspace symbols
 -- keyset("n", "<space>s", ":<C-u>CocList -I symbols<cr>", opts)
 -- Do default action for next item
 keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
+
 -- Do default action for previous item
 keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
+
 -- Resume latest coc list
 keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
 
@@ -119,6 +125,18 @@ keyset("n", "<leader>t", ":<C-u>CocCommand explorer<cr>", opts)
 -- You probably also want to set a keymap to toggle aerial
 keyset("n", "<leader>at", "<cmd>AerialToggle!<CR>")
 
--- Mappings for Mini.files
-keyset("n", "<leader>mf", "<cmd>lua MiniFiles.open()<CR>", opts)
 
+-- Todos comment keymap
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
+-- You can also specify a list of valid jump keywords
+
+-- vim.keymap.set("n", "]t", function()
+--   require("todo-comments").jump_next({keywords = { "ERROR", "WARNING" }})
+-- end, { desc = "Next error/warning todo comment" })

@@ -4,21 +4,21 @@ local cmd = vim.cmd
 
 
 -- Basic config
-
 opt.encoding="utf-8"
 opt.fileencoding="utf-8"
 opt.fileencodings="utf-8"
 opt.fileformat="unix"
 opt.fileformats="unix"
 opt.backup=false
+opt.sessionoptions:append("unix,slash")
 opt.writebackup=false
 opt.updatetime=300
 opt.signcolumn="yes"
-
+opt.history=50
 
 opt.compatible=false
 opt.showmatch=true
-opt.showcmd=true
+opt.showcmd=true -- Show command in status line
 opt.ignorecase=true
 opt.mouse="a"
 opt.hlsearch=true
@@ -27,7 +27,7 @@ opt.inccommand = "split"
 opt.tabstop=4
 opt.expandtab=true
 opt.shiftwidth=4
-opt.autoindent=true
+opt.autoindent=true -- Copy indent from current line
 opt.smartindent=true
 opt.number=true
 opt.relativenumber=true
@@ -37,7 +37,7 @@ opt.wildignore:append { '.git', 'node_modules', 'dist', '.venv' }
 opt.wildoptions="pum"
 opt.list=true
 opt.listchars="tab:»·,trail:·,nbsp:·,extends:>,precedes:<"
-opt.backspace="indent,eol,start"
+opt.backspace="indent,eol,start" -- Where in Insert mode the backspace key can be used
 opt.wrap=false
 -- opt.shell='fish'
 opt.shell='zsh'

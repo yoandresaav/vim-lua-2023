@@ -40,6 +40,9 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
+  indent = {
+    enable = true
+  },
   -- context_commentstring = {
   --   enable = true,
   --   enable_autocmd = false,
@@ -144,9 +147,9 @@ vim.api.nvim_create_autocmd("User", {
 -- Enable coc-snippets
 vim.g.coc_global_extensions = { 'coc-snippets' }
 
-require("mason").setup()
+-- require("mason").setup()
 -- require("mason-nvim-dap").setup()
-require("mason-lspconfig").setup()
+-- require("mason-lspconfig").setup()
 -- require("lspsaga").setup()
 -- require('dap')
 -- require('dap.ext.vscode').load_launchjs()
@@ -182,9 +185,18 @@ require("aerial").setup({
 
 vim.api.nvim_set_hl(0, 'Comment', { italic=true })
 
-require("oil").setup()
-
-
+require("oil").setup({
+  columns = {
+    "icon",
+    "filename",
+    "permissions",
+    "size",
+  },
+  delete_to_trash = true,
+  view_options = {
+    show_hidden = true,
+  }
+})
 
 
 require("noice").setup({
@@ -204,6 +216,36 @@ require("noice").setup({
     inc_rename = false, -- enables an input dialog for inc-rename.nvim
     lsp_doc_border = false, -- add a border to hover docs and signature help
   },
+  views = {
+      cmdline_popup = {
+        position = {
+          row = 5,
+          col = "50%",
+        },
+        size = {
+          width = 60,
+          height = "auto",
+        },
+      },
+      popupmenu = {
+        relative = "editor",
+        position = {
+          row = 8,
+          col = "50%",
+        },
+        size = {
+          width = 60,
+          height = 10,
+        },
+        border = {
+          style = "rounded",
+          padding = { 0, 1 },
+        },
+        win_options = {
+          winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+        },
+      },
+    },
 })
 
 require('onedark').setup {
@@ -211,4 +253,3 @@ require('onedark').setup {
     transparent = true,
 }
 require('onedark').load()
-
