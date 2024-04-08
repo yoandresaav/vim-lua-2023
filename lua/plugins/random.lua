@@ -181,7 +181,6 @@ return {
 	},
 
 	--- comments for jsx,tsx
-	-- TODO: just removed
 	"tpope/vim-commentary",
 	"JoosepAlviste/nvim-ts-context-commentstring",
 
@@ -218,7 +217,7 @@ return {
 	--- FZF
 	{ "junegunn/fzf", build = ":call fzf#install()" },
 
-	"junegunn/fzf.vim",
+	-- "junegunn/fzf.vim",
 
 	"Pocco81/auto-save.nvim",
 
@@ -465,5 +464,18 @@ return {
 				lint.try_lint()
 			end, { desc = "Lint current file" })
 		end,
-	}
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	},
 }

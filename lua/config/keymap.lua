@@ -1,6 +1,17 @@
 local api = vim.api
 local keyset = vim.keymap.set
 
+-- Local changes
+keyset('n', '<leader>nh', ':noh<CR>', {noremap = true, silent = true, desc = 'No highlight' })
+
+-- Incremental / decremental number
+keyset('n', '<leader>+', '<C-a>', {noremap = true, silent = true, desc = 'Increment number' })
+keyset('n', '<leader>-', '<C-x>', {noremap = true, silent = true, desc = 'Decrement number' })
+
+
+-- window management
+keyset('n', "<leader>sx", "<cmd>close<CR>", { desc = "Close window" })
+
 -- Telescope
 local opts = {noremap = true, silent = true}
 keyset('n', '<leader>ff', ':Telescope find_files hidden=true<CR>', opts)
