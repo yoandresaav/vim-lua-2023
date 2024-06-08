@@ -68,5 +68,34 @@ require("config.autocmd")
 -- require('config.format')
 -- require('config.dap')
 
+
+-- vim.g.lint_config = {
+--     python = {
+--         linters = {
+--             pyright = {
+--                 command = 'pyright-langserver',
+--                 args = {},
+--                 rootPatterns = {'.git'},
+--                 debounce = 100,
+--                 sourceName = 'pyright',
+--                 securities = {'error', 'warning'},
+--                 formatLines = 1,
+--                 formatPattern = {
+--                     '^\\s*File "(\\S+)", line (\\d+), col (\\d+), (.+)$',
+--                     {
+--                         file = 1,
+--                         line = 2,
+--                         column = 3,
+--                         message = 4
+--                     }
+--                 },
+--                 formatLinesIgnore = {
+--                     '^\\s*File "(?:\\S+)", line \\d+, col \\d+,'
+--                 }
+--             }
+--         }
+--     }
+-- }
+
 -- vim.cmd('colorscheme gruvbox-material')
 vim.cmd("colorscheme onedark")

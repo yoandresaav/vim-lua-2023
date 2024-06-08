@@ -36,9 +36,10 @@ return {
 					"html",
 					"lua_ls",
 					"tsserver",
-					"tailwindcss",
+					-- "tailwindcss",
 					"emmet_ls",
 					"pyright",
+					"pylsp",
 				},
 			})
 
@@ -50,6 +51,7 @@ return {
 					"black",
 					"pylint",
 					"eslint_d",
+					"pyright",
 				},
 			})
 		end,
@@ -87,15 +89,16 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			{ "Pheon-Dev/pigeon", opts = {} },
+			-- { "kyazdani42/nvim-web-devicons", opt = true, }
 		},
 		event = "VeryLazy",
-		requires = {
-			"kyazdani42/nvim-web-devicons", opt = true,
-		},
-		use {
-			'nvim-telescope/telescope.nvim', tag = '0.1.0'.
-			requires = {{ 'nvim-lua/plenary.nvim' }}
-		}
+		-- requires = {
+		-- 	"kyazdani42/nvim-web-devicons", opt = true,
+		-- },
+		-- use {
+		--	'nvim-telescope/telescope.nvim', tag = '0.1.0'.
+		--	requires = {{ 'nvim-lua/plenary.nvim' }}
+		-- }
 	},
 
 	"nvim-tree/nvim-web-devicons",
@@ -223,8 +226,7 @@ return {
 
 	--- FZF
 	{ "junegunn/fzf", build = ":call fzf#install()" },
-
-	-- "junegunn/fzf.vim",
+	"junegunn/fzf.vim",
 
 	"Pocco81/auto-save.nvim",
 
@@ -303,6 +305,23 @@ return {
 		opts = {},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+		  require("oil").setup({
+			default_file_explorer = false,
+			delete_to_trash = true,
+			skip_confirm_for_simple_edits = true,
+			view_options = {
+			  show_hidden = true,
+			  natural_order = true,
+			  is_always_hidden = function(name, _)
+				return name == '..' or name == '.git'
+			  end,
+			},
+			win_options = {
+			  wrap = true,
+			}
+		  })
+		end,
 	},
 
 	{
@@ -393,11 +412,14 @@ return {
 			-- refer to the configuration section below
 		},
 	},
+
 	{ "David-Kunz/gen.nvim" },
+
 	{
 		"willothy/wezterm.nvim",
 		config = true,
 	},
+
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", "folke/todo-comments.nvim" },
@@ -445,11 +467,14 @@ return {
 			end, { desc = "Format file or range (in visual mode)" })
 		end,
 	},
+
+	-- Linter
 	{
 		"mfussenegger/nvim-lint",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local lint = require("lint")
+
 			lint.linters_by_ft = {
 				javascript = { "eslint_d" },
 				typescript = { "eslint_d" },
@@ -470,19 +495,9 @@ return {
 			vim.keymap.set("n", "<leader>l", function()
 				lint.try_lint()
 			end, { desc = "Lint current file" })
+
+			lint.linters.pylint.cmd = "python"
+			lint.linters.pylint.args = {'-m', 'pylint', '-f', 'json'}
 		end,
-	},
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-		end,
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
 	},
 }
