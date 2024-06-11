@@ -170,11 +170,15 @@ return {
 		opts = {
 			ensure_installed = {
 				"bash",
+				"dockerfile",
 				"html",
+				"htmldjango",
 				"javascript",
 				"json",
 				"lua",
+				"luadoc",
 				"markdown",
+				"make",
 				"markdown_inline",
 				"python",
 				"query",
@@ -182,6 +186,7 @@ return {
 				"tsx",
 				"typescript",
 				"vim",
+				"vimdoc",
 				"yaml",
 				"css",
 				"scss",
