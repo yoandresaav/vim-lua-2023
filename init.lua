@@ -20,8 +20,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins", {
 	install = { colorscheme = { "tokyonight", "habamax", "gruvbox" } },
 	defauls = {
-		-- colorscheme = "tokyonight",
-		colorscheme = "gruvbox",
+		colorscheme = "tokyonight",
+		-- colorscheme = "gruvbox",
 		lazy = false,
 	},
 	spec = {
@@ -65,8 +65,9 @@ require("config.keymap")
 -- local styled = require('config.styled')
 require("config.setup")
 require("config.autocmd")
--- require('config.format')
+require('config.format')
 -- require('config.dap')
+-- require("plugins.colorscheme")
 
 
 -- vim.g.lint_config = {
@@ -99,3 +100,4 @@ require("config.autocmd")
 
 -- vim.cmd('colorscheme gruvbox-material')
 vim.cmd("colorscheme onedark")
+-- vim.cmd('colorscheme tokyonight')

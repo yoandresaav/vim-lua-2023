@@ -8,7 +8,7 @@
 -- require("telescope").load_extension("notify")
 require("telescope").setup({
 	defaults = {
-		file_ignore_patterns = { "node_modules", ".venv", "static", "yarn.lock", ".git" },
+		file_ignore_patterns = { "node_modules", ".venv", "yarn.lock", ".git" }, -- static
 	},
 	pickers = {
 		find_files = {
@@ -17,6 +17,11 @@ require("telescope").setup({
 		coc_references = {
 			theme = "ivy",
 		},
+		live_grep = {
+			aditional_args = function() return {
+				"-u",
+			} end
+		}
 	},
 })
 

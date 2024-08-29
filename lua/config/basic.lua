@@ -59,3 +59,4 @@ opt.modifiable=true
 opt.background="dark"
 
 opt.colorcolumn="80"
+

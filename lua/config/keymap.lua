@@ -74,8 +74,8 @@ local opts = {silent = true, noremap = true, expr = true, replace_keycodes = fal
 keyset("i", "<c-a>", "coc#refresh()", {silent = true, expr = true})
 
 -- Coc Format selected text
-keyset('n', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
-keyset('x', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
+-- keyset('n', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
+-- keyset('x', '<leader>f', '<Plug>(coc-format-selected)', {noremap = true, silent = true})
 
 -- Coc goto code navigation
 local opts = { noremap = true, silent = true }
