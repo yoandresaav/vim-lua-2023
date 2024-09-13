@@ -36,11 +36,9 @@ return {
 					"html",
 					"lua_ls",
 					"tsserver",
-					-- "tailwindcss",
 					"emmet_ls",
 					"pyright",
 					"ruff",
-					-- "pylsp",
 					"terraformls",
 				},
 			})
@@ -51,7 +49,7 @@ return {
 					"stylua",
 					"isort",
 					-- "black",
-					"eslint_d",
+					-- "eslint_d",
 					"pyright",
 					"ruff-lsp",
 				},
@@ -62,9 +60,9 @@ return {
 	-- Adds vscode-like pictograms to neovim built-in lsp
 	"onsails/lspkind.nvim",
 
-	-- A Lua module for asynchronous programming using coroutines. 
-	-- This library is built on native lua coroutines and libuv. 
-	-- Coroutines make it easy to avoid callback hell and allow for easy cooperative concurrency and cancellation. 
+	-- A Lua module for asynchronous programming using coroutines.
+	-- This library is built on native lua coroutines and libuv.
+	-- Coroutines make it easy to avoid callback hell and allow for easy cooperative concurrency and cancellation.
 	-- Apart from allowing users to perform asynchronous io easily, this library also functions as an abstraction for coroutines.
 	"nvim-lua/plenary.nvim",
 	-- An implementation of the Popup API from vim in Neovim.
@@ -252,9 +250,7 @@ return {
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
 	},
-
 	"windwp/nvim-ts-autotag",
-
 	{
 		"stevearc/dressing.nvim",
 		opts = {},
@@ -268,7 +264,6 @@ return {
 			})
 		end,
 	},
-
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -278,7 +273,6 @@ return {
 			-- refer to the configuration section below
 		},
 	},
-
 	{
 		"stevearc/aerial.nvim",
 		opts = {},
@@ -288,32 +282,6 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 	},
-
-	-- { "jose-elias-alvarez/null-ls.nvim",
-	-- 	config = function()
-	-- 		local null_ls = require("null-ls")
-	-- 		null_ls.setup({
-	-- 			sources = {
-	-- 				null_ls.builtins.formatting.stylua,
-	-- 				null_ls.builtins.formatting.clang_format,
-	-- 				null_ls.builtins.formatting.eslint,
-	-- 				null_ls.builtins.formatting.black,
-	-- 				null_ls.builtins.diagnostics.eslint,
-	-- 				null_ls.builtins.completion.spell,
-	-- 				null_ls.builtins.diagnostics.pylint.with({
-	-- 				  diagnostics_postprocess = function(diagnostic)
-	-- 					diagnostic.code = diagnostic.message_id
-	-- 				  end,
-	-- 				  prefer_local = ".venv/bin"
-	-- 				}),
-	-- 				null_ls.builtins.formatting.isort,
-	-- 				null_ls.builtins.formatting.black,
-	-- 			}
-	-- 		})
-	-- 	end,
-	-- 	dependencies = { "nvim-lua/plenary.nvim" },
-	-- },
-
 	{
 		"stevearc/oil.nvim",
 		opts = {},
@@ -337,7 +305,6 @@ return {
 			})
 		end,
 	},
-
 	{
 		"github/copilot.vim",
 		init = function()
@@ -490,10 +457,10 @@ return {
 			local lint = require("lint")
 
 			lint.linters_by_ft = {
-				javascript = { "eslint_d" },
-				typescript = { "eslint_d" },
-				javascriptreact = { "eslint_d" },
-				typescriptreact = { "eslint_d" },
+				-- javascript = { "eslint_d" },
+				-- typescript = { "eslint_d" },
+				-- javascriptreact = { "eslint_d" },
+				-- typescriptreact = { "eslint_d" },
 				python = { "ruff" },
 			}
 

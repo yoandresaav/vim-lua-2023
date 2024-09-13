@@ -100,4 +100,6 @@ require('config.snippets')
 -- }
 
 -- vim.cmd('colorscheme gruvbox-material')
--- vim.cmd("colorscheme onedark")
+vim.cmd("colorscheme onedark")
+-- vim.cmd("highlight ColorColumn ctermbg=0 guibg=#333333")
+
