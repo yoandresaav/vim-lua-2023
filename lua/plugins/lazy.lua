@@ -321,6 +321,34 @@ return {
 	},
 
 	{
+	  "CopilotC-Nvim/CopilotChat.nvim",
+	  branch = "canary",
+	  dependencies = {
+		{ "zbirenbaum/copilot.lua" },  -- or "github/copilot.vim"
+		{ "nvim-lua/plenary.nvim" },   -- for curl, log wrapper
+	  },
+	  opts = {
+		-- Your existing configurations
+	  },
+	  build = "make tiktoken",  -- Only on macOS or Linux
+	  event = "VeryLazy",
+	  keys = {
+		{ "<leader>cc", "<cmd>CopilotChat<cr>", desc = "Open Copilot Chat" },
+		{
+		  "<leader>ccq",
+		  function()
+	local input = vim.fn.input("Quick Chat: ")
+	if input ~= "" then
+		require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+	end
+		  end,
+		  desc = "CopilotChat - Quick chat",
+		},
+		-- Add other key mappings as needed
+	  },
+	},
+
+	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {
